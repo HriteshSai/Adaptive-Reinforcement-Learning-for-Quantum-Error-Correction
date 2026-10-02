@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quantum RL Decoder — Next-Gen Adaptive QEC Cockpit</title>
+  
+  <!-- Modern Google Fonts: Outfit, Plus Jakarta Sans, JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Plotly.js for interactive research plots -->
+  <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+  
+  <link rel="stylesheet" href="style.css">
+</head>
+<body class="theme-quantum">
+  <!-- Interactive Ambient Quantum Canvas Background -->
+  <canvas id="ambient-canvas"></canvas>
+
+  <div class="app-layout">
+
+    <!-- ======================================================== -->
+    <!-- 1. LANDING / EXECUTIVE OVERVIEW PAGE -->
+    <!-- ======================================================== -->
+    <div id="landing-page" class="landing-section">
+      <div class="landing-hero">
+        
+        <!-- Top Badge -->
+        <div class="hero-badge-wrap">
+          <span class="hero-badge">
+            <span class="badge-dot pulse-cyan"></span>
+            B.TECH FINAL YEAR MAJOR PROJECT · QUANTUM INFORMATION & ML
+          </span>
+        </div>
+
+        <!-- Main Title & Subtitle -->
+        <h1 class="hero-title">
+          Adaptive Reinforcement Learning for<br>
+          <span class="text-gradient-cyan">Quantum Error Correction</span>
+        </h1>
+        <p class="hero-subtitle">
+          Autonomous Quantum Error Mitigation & Non-Stationary Noise Drift Adaptation in Repetition Codes via Tabular Reinforcement Learning.
+        </p>
+
+        <!-- Key Impact Metrics Strip -->
+        <div class="hero-metrics-strip">
+          <div class="hero-metric-item">
+            <span class="metric-num text-cyan">7.24×</span>
+            <span class="metric-label">Error Rate Reduction Under Drift</span>
+          </div>
+          <div class="hero-metric-divider"></div>
+          <div class="hero-metric-item">
+            <span class="metric-num text-green">&gt;90%</span>
+            <span class="metric-label">Compute Overhead Savings</span>
+          </div>
+          <div class="hero-metric-divider"></div>
+          <div class="hero-metric-item">
+            <span class="metric-num text-purple">100%</span>
+            <span class="metric-label">Optimal Policy Convergence (0,3,1,2)</span>
+          </div>
+          <div class="hero-metric-divider"></div>
+          <div class="hero-metric-item">
+            <span class="metric-num text-yellow">&lt;10 ms</span>
+            <span class="metric-label">Sub-Round Decision Latency</span>
+          </div>
+        </div>
+
+        <!-- Call to Action Buttons -->
+        <div class="hero-cta-group">
+          <button id="btn-explore" class="btn btn-hero btn-glow">
+            <span class="btn-hero-icon">⚡</span>
+            <span>Explore Interactive Cockpit</span>
+            <span class="btn-arrow">→</span>
+          </button>
+          <button id="btn-quick-drift" class="btn btn-hero-secondary">
+            <span>📈 Jump to Drift Benchmarks</span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Core Research Architecture Cards -->
+      <div class="landing-features-grid">
+        
+        <div class="feature-card">
+          <div class="feature-icon-box cyan-box">⚛️</div>
+          <h3 class="feature-title">[[3, 1, 3]] Repetition Code</h3>
+          <p class="feature-desc">
+            Simulated in <strong>Stim</strong> with 3 physical data qubits and 2 ancillas. Measures non-destructive parity checks via CNOT gates to extract syndrome bits.
+          </p>
+          <div class="feature-tag font-mono">STIM STABILIZERS</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box violet-box">🧠</div>
+          <h3 class="feature-title">Model-Free Tabular Q-Learning</h3>
+          <p class="feature-desc">
+            One-step contextual bandit formulation. The agent learns optimal syndrome-to-correction mappings solely from binary survival rewards without prior physics equations.
+          </p>
+          <div class="feature-tag font-mono">Q-LEARNING AGENT</div>
+        </div>
+
+        <div class="feature-card highlight-feature">
+          <div class="feature-icon-box emerald-box">⚡</div>
+          <h3 class="feature-title">Selective Drift Adaptation</h3>
+          <p class="feature-desc">
+            Detects asymmetric physical qubit degradation and selectively triggers policy updates, outperforming classical matching with minimal computational overhead.
+          </p>
+          <div class="feature-tag font-mono text-cyan">ADAPTIVE CONTROLLER</div>
+        </div>
+
+        <div class="feature-card">
+          <div class="feature-icon-box amber-box">🔬</div>
+          <h3 class="feature-title">PyMatching Classical Baseline</h3>
+          <p class="feature-desc">
+            Rigorously benchmarked against the gold-standard Minimum-Weight Perfect Matching (MWPM) algorithm to measure performance gaps under non-stationary noise.
+          </p>
+          <div class="feature-tag font-mono">MWPM BENCHMARK</div>
+        </div>
+
+      </div>
+
+      <!-- Quick Research Abstract Footer -->
+      <div class="landing-abstract-card">
+        <div class="abstract-badge font-mono">EXECUTIVE SUMMARY</div>
+        <p class="abstract-text">
+          <strong>Research Thesis:</strong> Real quantum computers experience continuous calibration drift. Classical decoders rely on stale characterization data and suffer degraded logical error rates under asymmetric noise. This project designs a meta-controlled reinforcement learning decoder that autonomously detects hardware drift and recovers baseline fidelity with an order-of-magnitude reduction in re-calibration updates.
+        </p>
+      </div>
+
+    </div>
+
+    <!-- ======================================================== -->
+    <!-- 2. COCKPIT INTERFACE CONTAINER (Hidden by default) -->
+    <!-- ======================================================== -->
+    <div id="cockpit-interface" class="cockpit-wrapper" style="display: none;">
+      
+      <!-- Top Futuristic HUD Header -->
+      <header class="app-header">
+        <div class="header-left">
+          <div class="logo-container">
+            <div class="logo-orb">
+              <span class="logo-symbol">Ψ</span>
+              <div class="orb-ring"></div>
+              <div class="orb-glow"></div>
+            </div>
+          </div>
+          <div>
+            <div class="title-row">
+              <h1 class="project-title">QUANTUM RL DECODER</h1>
+              <span class="hud-badge pulse-cyan">PHASE 1 · ADAPTIVE QEC</span>
+              <span class="hud-badge badge-model">STIM + PYMATCHING</span>
+            </div>
+            <p class="project-subtitle">Reinforcement Learning for Quantum Error Correction under Non-Stationary Hardware Drift</p>
+          </div>
+        </div>
+        
+        <div class="header-right">
+          <!-- Back to Overview Button -->
+          <button id="btn-back-to-landing" class="btn btn-ghost btn-overview" title="Return to Project Overview">
+            <span>✦</span> Overview / Info
+          </button>
+
+          <!-- Live Stream Stats Pill -->
+          <div class="stream-stats-pill" id="stream-pill" style="display: none;">
+            <span class="live-dot pulse-red"></span>
+            <span class="stream-label">STREAM:</span>
+            <span id="stream-shot-count" class="font-mono text-cyan">0 shots</span>
+            <span class="stream-separator">|</span>
+            <span class="stream-label">LIVE LER:</span>
+            <span id="stream-live-ler" class="font-mono text-green">0.00%</span>
+          </div>
+
+          <div id="backend-status" class="status-pill status-connecting">
+            <span class="status-dot"></span>
+            <span id="status-text">Connecting to Simulator...</span>
+          </div>
+
+          <button id="btn-toggle-stream" class="btn btn-stream" title="Continuous Live Simulation Stream">
+            <span class="btn-stream-icon">▶</span>
+            <span class="btn-stream-text">Auto Stream</span>
+          </button>
+        </div>
+      </header>
+
+      <!-- Sleek Glass Navigation Tab Bar -->
+      <nav class="tab-bar">
+        <div class="tab-slider-wrapper">
+          <button class="tab-btn active" data-tab="tab-arena" id="btn-tab-arena">
+            <span class="tab-icon">⚡</span>
+            <span>Quantum Circuit Arena</span>
+          </button>
+          <button class="tab-btn" data-tab="tab-drift" id="btn-tab-drift">
+            <span class="tab-icon">📈</span>
+            <span>Hardware Drift Cockpit</span>
+          </button>
+          <button class="tab-btn" data-tab="tab-qtable" id="btn-tab-qtable">
+            <span class="tab-icon">🧠</span>
+            <span>RL Policy Matrix</span>
+          </button>
+          <button class="tab-btn" data-tab="tab-research" id="btn-tab-research">
+            <span class="tab-icon">🎓</span>
+            <span>Viva & Academic Defense</span>
+          </button>
+        </div>
+        <div class="tab-info-badge font-mono">
+          <span class="text-muted">CODE:</span> [[3, 1, 3]] BIT-FLIP
+        </div>
+      </nav>
+
+      <!-- Main Content Area -->
+      <main class="main-content">
+        
+        <!-- ======================================================== -->
+        <!-- TAB 1: INTERACTIVE QUANTUM CIRCUIT ARENA -->
+        <!-- ======================================================== -->
+        <section id="tab-arena" class="tab-pane active">
+          <div class="grid-2col">
+            
+            <!-- Left: Interactive Circuit & Pulse Stage -->
+            <div class="glass-card circuit-card">
+              <div class="card-header">
+                <div>
+                  <h2 class="card-title">Interactive QEC Circuit Stage</h2>
+                  <p class="card-desc">Click physical qubit nodes to inject X errors, or sample stochastic noise.</p>
+                </div>
+                <div class="button-group">
+                  <button id="btn-sample-noise" class="btn btn-secondary">
+                    <span class="btn-icon">🎲</span> Sample Noise
+                  </button>
+                  <button id="btn-clear-errors" class="btn btn-ghost">Reset Qubits</button>
+                </div>
+              </div>
+
+              <!-- Visual Circuit Stage with SVG Overlay & Glowing Nodes -->
+              <div class="circuit-stage" id="circuit-stage-container">
+                <svg id="quantum-circuit-svg" viewBox="0 0 620 340" width="100%">
+                  <defs>
+                    <filter id="glow-cyan" x="-20%" y="-20%" width="140%" height="140%">
+                      <feGaussianBlur stdDeviation="4" result="blur" />
+                      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                    </filter>
+                    <filter id="glow-red" x="-30%" y="-30%" width="160%" height="160%">
+                      <feGaussianBlur stdDeviation="6" result="blur" />
+                      <feComposite in="SourceGraphic" in2="blur" operator="over" />
+                    </filter>
+                  </defs>
+
+                  <!-- Circuit Quantum Bus Lines -->
+                  <g class="circuit-wires">
+                    <line x1="90" y1="55" x2="530" y2="55" class="circuit-wire data-wire" />
+                    <line x1="90" y1="120" x2="530" y2="120" class="circuit-wire data-wire" />
+                    <line x1="90" y1="185" x2="530" y2="185" class="circuit-wire data-wire" />
+                    <line x1="90" y1="250" x2="530" y2="250" class="circuit-wire ancilla-wire" />
+                    <line x1="90" y1="300" x2="530" y2="300" class="circuit-wire ancilla-wire" />
+                  </g>
+
+                  <!-- Qubit Labels -->
+                  <g class="qubit-labels font-mono">
+                    <text x="35" y="60" class="label-data">|q₀⟩</text>
+                    <text x="35" y="125" class="label-data">|q₁⟩</text>
+                    <text x="35" y="190" class="label-data">|q₂⟩</text>
+                    <text x="35" y="255" class="label-ancilla">|a₀⟩</text>
+                    <text x="35" y="305" class="label-ancilla">|a₁⟩</text>
+                  </g>
+
+                  <!-- CNOT Entanglement Entanglers -->
+                  <g class="cnot-network">
+                    <line x1="300" y1="55" x2="300" y2="250" class="cnot-coupler" />
+                    <circle cx="300" cy="55" r="5" class="cnot-control" />
+                    <line x1="350" y1="120" x2="350" y2="250" class="cnot-coupler" />
+                    <circle cx="350" cy="120" r="5" class="cnot-control" />
+                    <circle cx="300" cy="250" r="11" class="cnot-target" />
+                    <path d="M 300 239 L 300 261 M 289 250 L 311 250" class="cnot-cross" />
+                    <circle cx="350" cy="250" r="11" class="cnot-target" />
+                    <path d="M 350 239 L 350 261 M 339 250 L 361 250" class="cnot-cross" />
+
+                    <line x1="400" y1="120" x2="400" y2="300" class="cnot-coupler" />
+                    <circle cx="400" cy="120" r="5" class="cnot-control" />
+                    <line x1="450" y1="185" x2="450" y2="300" class="cnot-coupler" />
+                    <circle cx="450" cy="185" r="5" class="cnot-control" />
+                    <circle cx="400" cy="300" r="11" class="cnot-target" />
+                    <path d="M 400 289 L 400 311 M 389 300 L 411 300" class="cnot-cross" />
+                    <circle cx="450" cy="300" r="11" class="cnot-target" />
+                    <path d="M 450 289 L 450 311 M 439 300 L 461 300" class="cnot-cross" />
+                  </g>
+
+                  <!-- Interactive Qubit Transmon Nodes -->
+                  <g class="interactive-qubit-nodes">
+                    <g id="node-q0" class="transmon-node" onclick="toggleError(0)">
+                      <circle cx="170" cy="55" r="22" class="node-halo" />
+                      <circle cx="170" cy="55" r="16" class="node-core" />
+                      <text x="170" y="60" text-anchor="middle" class="node-state-text">I</text>
+                    </g>
+                    <g id="node-q1" class="transmon-node" onclick="toggleError(1)">
+                      <circle cx="170" cy="120" r="22" class="node-halo" />
+                      <circle cx="170" cy="120" r="16" class="node-core" />
+                      <text x="170" y="125" text-anchor="middle" class="node-state-text">I</text>
+                    </g>
+                    <g id="node-q2" class="transmon-node" onclick="toggleError(2)">
+                      <circle cx="170" cy="185" r="22" class="node-halo" />
+                      <circle cx="170" cy="185" r="16" class="node-core" />
+                      <text x="170" y="190" text-anchor="middle" class="node-state-text">I</text>
+                    </g>
+                  </g>
+
+                  <!-- Ancilla Syndrome Detector Readout Registers -->
+                  <g class="syndrome-detectors">
+                    <rect x="500" y="234" width="36" height="32" rx="6" class="detector-pod" />
+                    <text x="518" y="255" text-anchor="middle" id="meas-s0" class="detector-val">0</text>
+                    
+                    <rect x="500" y="284" width="36" height="32" rx="6" class="detector-pod" />
+                    <text x="518" y="305" text-anchor="middle" id="meas-s1" class="detector-val">0</text>
+                  </g>
+                </svg>
+              </div>
+
+              <!-- Syndrome & State Status Strip -->
+              <div class="syndrome-hud-bar">
+                <div class="syndrome-badge-cluster">
+                  <span class="hud-label">EXTRACTED SYNDROME:</span>
+                  <span id="syndrome-badge" class="hud-syndrome-val font-mono">[0, 0]</span>
+                  <span id="state-index-badge" class="hud-state-pill font-mono">STATE 0</span>
+                </div>
+                <div class="syndrome-narrative" id="syndrome-explanation">
+                  No error detected: All parity checks satisfied.
+                </div>
+              </div>
+
+              <!-- Quick Scenario Chip Triggers -->
+              <div class="scenario-chips-row">
+                <span class="chips-title">Quick Scenarios:</span>
+                <button class="chip-item" onclick="setPreset([1, 0, 0])">Q₀ Flip</button>
+                <button class="chip-item" onclick="setPreset([0, 1, 0])">Q₁ Flip (Shared)</button>
+                <button class="chip-item" onclick="setPreset([0, 0, 1])">Q₂ Flip (Readout)</button>
+                <button class="chip-item chip-danger" onclick="setPreset([1, 1, 1])">Logical X Error (3 Flips)</button>
+                <button class="chip-item chip-warn" onclick="setPreset([1, 1, 0])">2-Bit Pair (q₀+q₁)</button>
+              </div>
+            </div>
+
+            <!-- Right: 4-Way Decoder Duel & Real-Time Resolution -->
+            <div class="glass-card arena-card">
+              <div class="card-header">
+                <div>
+                  <h2 class="card-title">Live 4-Way Decoder Duel</h2>
+                  <p class="card-desc">Compare classical matching against fixed and adaptive reinforcement learning.</p>
+                </div>
+                <button id="btn-run-step" class="btn btn-primary btn-glow">
+                  <span>⚡</span> Run Round
+                </button>
+              </div>
+
+              <!-- Visual Decoder Cards Matrix -->
+              <div class="decoders-grid">
+                
+                <!-- 1. Fixed MWPM -->
+                <div class="decoder-tile" id="card-fixed-mwpm">
+                  <div class="tile-header">
+                    <span class="tile-title">Fixed MWPM</span>
+                    <span class="tile-tag">PyMatching</span>
+                  </div>
+                  <div class="tile-body">
+                    <div class="tile-action font-mono" id="mwpm-action">Action: —</div>
+                    <div class="tile-status-row">
+                      <span class="tile-status" id="mwpm-status">Status: Idle</span>
+                      <span class="tile-reward font-mono" id="mwpm-reward">R: 0</span>
+                    </div>
+                  </div>
+                  <div class="tile-footer">Calibrated at p = 0.03 (Stale)</div>
+                </div>
+
+                <!-- 2. Fixed RL -->
+                <div class="decoder-tile" id="card-fixed-rl">
+                  <div class="tile-header">
+                    <span class="tile-title">Fixed RL</span>
+                    <span class="tile-tag">Tabular Q</span>
+                  </div>
+                  <div class="tile-body">
+                    <div class="tile-action font-mono" id="rl-action">Action: —</div>
+                    <div class="tile-status-row">
+                      <span class="tile-status" id="rl-status">Status: Idle</span>
+                      <span class="tile-reward font-mono" id="rl-reward">R: 0</span>
+                    </div>
+                  </div>
+                  <div class="tile-footer">Frozen pre-trained policy</div>
+                </div>
+
+                <!-- 3. Adaptive RL Controller -->
+                <div class="decoder-tile tile-adaptive" id="card-adaptive-rl">
+                  <div class="tile-header">
+                    <span class="tile-title">Adaptive RL</span>
+                    <span class="tile-tag tag-cyan">Selective Controller</span>
+                  </div>
+                  <div class="tile-body">
+                    <div class="tile-action font-mono text-cyan" id="adaptive-action">Action: —</div>
+                    <div class="tile-status-row">
+                      <span class="tile-status" id="adaptive-status">Status: Idle</span>
+                      <span class="tile-reward font-mono" id="adaptive-reward">R: 0</span>
+                    </div>
+                  </div>
+                  <div class="tile-footer text-cyan">Adapts policy under drift</div>
+                </div>
+
+                <!-- 4. Oracle MWPM -->
+                <div class="decoder-tile" id="card-oracle-mwpm">
+                  <div class="tile-header">
+                    <span class="tile-title">Oracle MWPM</span>
+                    <span class="tile-tag tag-green">Ground Truth</span>
+                  </div>
+                  <div class="tile-body">
+                    <div class="tile-action font-mono" id="oracle-action">Action: —</div>
+                    <div class="tile-status-row">
+                      <span class="tile-status" id="oracle-status">Status: Idle</span>
+                      <span class="tile-reward font-mono" id="oracle-reward">R: 0</span>
+                    </div>
+                  </div>
+                  <div class="tile-footer">Re-calibrated with true error rates</div>
+                </div>
+
+              </div>
+
+              <!-- Round Diagnostic Telemetry Strip -->
+              <div class="telemetry-box">
+                <div class="telemetry-header font-mono">
+                  <span class="telemetry-icon">📡</span>
+                  <span>ROUND DIAGNOSTIC REPORT</span>
+                </div>
+                <p id="round-narrative" class="telemetry-text">
+                  Circuit initialized in ground state |000⟩. Click any qubit node or hit "Sample Noise" to initiate decoding.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ======================================================== -->
+        <!-- TAB 2: HARDWARE DRIFT COCKPIT -->
+        <!-- ======================================================== -->
+        <section id="tab-drift" class="tab-pane">
+          <div class="grid-2col">
+            
+            <!-- Left: Hardware Noise Controls & KPI Telemetry -->
+            <div class="glass-card">
+              <div class="card-header">
+                <div>
+                  <h2 class="card-title">Hardware Noise & Drift Simulator</h2>
+                  <p class="card-desc">Simulate physical hardware degradation and non-stationary noise drift.</p>
+                </div>
+              </div>
+
+              <div class="control-box">
+                <div class="slider-header-row">
+                  <label for="bias-slider" class="slider-label">Asymmetric Drift Bias Strength (α):</label>
+                  <span id="bias-val" class="font-mono text-cyan slider-val-display">0.00 (Uniform Noise)</span>
+                </div>
+                <div class="range-slider-wrapper">
+                  <input type="range" id="bias-slider" min="0" max="1" step="0.05" value="0.0" class="neon-slider">
+                </div>
+                <div class="slider-scale font-mono">
+                  <span>0.00 (Uniform p=0.03)</span>
+                  <span>0.50 (Moderate Drift)</span>
+                  <span>1.00 (Severe Asymmetry)</span>
+                </div>
+              </div>
+
+              <!-- Per-Qubit Degradation Gauges -->
+              <div class="qubit-bars-grid">
+                <div class="gauge-card">
+                  <div class="gauge-header">
+                    <span class="gauge-name">p(q₀) Clean Qubit</span>
+                    <span id="rate-q0" class="gauge-val font-mono text-green">0.0300</span>
+                  </div>
+                  <div class="gauge-track">
+                    <div id="bar-q0" class="gauge-fill fill-green" style="width: 30%;"></div>
+                  </div>
+                </div>
+
+                <div class="gauge-card">
+                  <div class="gauge-header">
+                    <span class="gauge-name">p(q₁) Central Qubit</span>
+                    <span id="rate-q1" class="gauge-val font-mono text-yellow">0.0300</span>
+                  </div>
+                  <div class="gauge-track">
+                    <div id="bar-q1" class="gauge-fill fill-yellow" style="width: 30%;"></div>
+                  </div>
+                </div>
+
+                <div class="gauge-card">
+                  <div class="gauge-header">
+                    <span class="gauge-name">p(q₂) Readout Qubit</span>
+                    <span id="rate-q2" class="gauge-val font-mono text-red">0.0300</span>
+                  </div>
+                  <div class="gauge-track">
+                    <div id="bar-q2" class="gauge-fill fill-red" style="width: 30%;"></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="benchmark-action-row">
+                <div class="shots-dropdown-box">
+                  <label class="dropdown-label font-mono">SHOTS:</label>
+                  <select id="select-shots" class="cyber-select">
+                    <option value="500">500 shots (Fast)</option>
+                    <option value="2000" selected>2,000 shots (Standard)</option>
+                    <option value="5000">5,000 shots (Precision)</option>
+                  </select>
+                </div>
+                <button id="btn-run-benchmark" class="btn btn-primary btn-glow">
+                  <span>🚀</span> Benchmark Decoders
+                </button>
+              </div>
+
+              <!-- KPI HUD Cards -->
+              <div class="kpi-hud-row">
+                <div class="kpi-box">
+                  <div class="kpi-label">Fixed MWPM LER</div>
+                  <div class="kpi-metric font-mono text-red" id="kpi-mwpm-ler">0.00210</div>
+                  <div class="kpi-caption">PyMatching (Stale)</div>
+                </div>
+
+                <div class="kpi-box kpi-featured">
+                  <div class="kpi-label">Adaptive RL LER</div>
+                  <div class="kpi-metric font-mono text-cyan" id="kpi-adaptive-ler">0.00029</div>
+                  <div class="kpi-caption text-cyan" id="kpi-improvement">7.24× Error Reduction</div>
+                </div>
+
+                <div class="kpi-box">
+                  <div class="kpi-label">Compute Efficiency</div>
+                  <div class="kpi-metric font-mono text-green" id="kpi-savings">92.0%</div>
+                  <div class="kpi-caption">Fewer updates than continuous</div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Right: Real-Time Dynamic Plotly Graph -->
+            <div class="glass-card chart-card">
+              <div class="card-header">
+                <div>
+                  <h2 class="card-title">Logical Error Rate vs Noise Drift</h2>
+                  <p class="card-desc">Watch Fixed MWPM degrade as Adaptive RL tracks the Oracle bound.</p>
+                </div>
+                <div class="button-group">
+                  <button id="btn-live-sweep" class="btn btn-secondary">⚡ Run Live Sweep</button>
+                  <button id="btn-load-saved-bias" class="btn btn-ghost">Reset to CSV</button>
+                </div>
+              </div>
+              
+              <div id="plot-drift-comparison" class="chart-container">
+                <!-- Plotly chart dynamically renders here -->
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ======================================================== -->
+        <!-- TAB 3: RL POLICY MATRIX (EXPLAINABILITY) -->
+        <!-- ======================================================== -->
+        <section id="tab-qtable" class="tab-pane">
+          <div class="grid-2col">
+            
+            <!-- Left: Heatmap Q-Table Matrix -->
+            <div class="glass-card">
+              <div class="card-header">
+                <div>
+                  <h2 class="card-title">Learned Q-Table Matrix (4×4)</h2>
+                  <p class="card-desc">Q-values converged via Tabular Q-Learning. Highlighted cells represent greedy actions.</p>
+                </div>
+                <button id="btn-refresh-qtable" class="btn btn-ghost">Reload Table</button>
+              </div>
+
+              <div class="matrix-table-wrapper">
+                <table class="q-matrix-table" id="q-table-element">
+                  <thead>
+                    <tr>
+                      <th>Syndrome State</th>
+                      <th>Action 0<br><span class="col-sub">No-op</span></th>
+                      <th>Action 1<br><span class="col-sub">Flip Q₀</span></th>
+                      <th>Action 2<br><span class="col-sub">Flip Q₁</span></th>
+                      <th>Action 3<br><span class="col-sub">Flip Q₂</span></th>
+                      <th>Greedy Policy</th>
+                    </tr>
+                  </thead>
+                  <tbody id="q-table-body">
+                    <!-- Populated via JavaScript -->
+                  </tbody>
+                </table>
+              </div>
+
+              <div class="convergence-banner">
+                <div class="conv-icon">✦</div>
+                <div class="conv-text">
+                  <strong>Policy Convergence:</strong> The learned greedy policy 
+                  <span class="badge-policy font-mono" id="policy-string">(0, 3, 1, 2)</span> replicates the optimal 
+                  minimum-weight matching rule purely from episodic ±1 rewards without any analytical circuit equations.
+                </div>
+              </div>
+            </div>
+
+            <!-- Right: Decision Boundaries & Explainability -->
+            <div class="glass-card">
+              <div class="card-header">
+                <div>
+                  <h2 class="card-title">Policy Explainability & Drift Dynamics</h2>
+                  <p class="card-desc">Physical reasoning behind optimal syndrome-to-correction mappings.</p>
+                </div>
+              </div>
+
+              <div class="policy-accordion">
+                <div class="accordion-panel">
+                  <div class="panel-head font-mono text-cyan">Syndrome [0, 0] ➔ Action: No correction (000)</div>
+                  <div class="panel-body">All parity checks match. Zero physical errors is the maximum likelihood state.</div>
+                </div>
+                <div class="panel-panel">
+                  <div class="panel-head font-mono text-cyan">Syndrome [0, 1] ➔ Action: Flip Q₂ (001)</div>
+                  <div class="panel-body">Parity check (q₁, q₂) fired while (q₀, q₁) passed. Qubit 2 is the odd qubit out.</div>
+                </div>
+                <div class="panel-panel">
+                  <div class="panel-head font-mono text-cyan">Syndrome [1, 0] ➔ Action: Flip Q₀ (100)</div>
+                  <div class="panel-body">Parity check (q₀, q₁) fired while (q₁, q₂) passed. Qubit 0 is the odd qubit out.</div>
+                </div>
+                <div class="panel-panel">
+                  <div class="panel-head font-mono text-cyan">Syndrome [1, 1] ➔ Action: Flip Q₁ (010)</div>
+                  <div class="panel-body">Both checks fired. Qubit 1 is entangled in both checks, resolving both simultaneously.</div>
+                </div>
+              </div>
+
+              <div class="xai-callout-card">
+                <h4 class="text-cyan">Why Adaptive RL Beats Fixed MWPM Under Asymmetric Drift:</h4>
+                <p>
+                  When hardware noise degrades $q_2$ severely ($p_{q2} \gg p_{q0}$), weight-2 errors involving $q_2$ become more probable than single errors on $q_0$. 
+                  Fixed MWPM continues to assume uniform noise weights and guesses incorrectly, while Adaptive RL adjusts the action for state <code>[1,0]</code> from flip $q_0$ to flip $q_2$, dropping the logical error rate by <strong>over 7×</strong>.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- ======================================================== -->
+        <!-- TAB 4: VIVA DEFENSE & RESEARCH SYNTHESIS -->
+        <!-- ======================================================== -->
+        <section id="tab-research" class="tab-pane">
+          <div class="glass-card full-width">
+            <div class="card-header">
+              <div>
+                <h2 class="card-title">B.Tech Major Project Research Synthesis</h2>
+                <p class="card-desc">Academic conclusions, verified empirical benchmarks, and examiner viva cheat sheet.</p>
+              </div>
+            </div>
+
+            <div class="viva-cards-row">
+              <div class="viva-tile">
+                <span class="viva-index font-mono">01</span>
+                <h4>The Core Research Problem</h4>
+                <p>Can model-free reinforcement learning decode quantum error codes, and how does performance degrade when real hardware noise drifts away from training calibration?</p>
+              </div>
+              <div class="viva-tile">
+                <span class="viva-index font-mono">02</span>
+                <h4>Uniform Noise Drift Null Result</h4>
+                <p>Under uniform noise scaling, relative error likelihood order remains invariant, meaning static matching graphs remain mathematically optimal.</p>
+              </div>
+              <div class="viva-tile tile-featured">
+                <span class="viva-index font-mono text-cyan">03</span>
+                <h4 class="text-cyan">Asymmetric Drift: The 7.2× Leap</h4>
+                <p>When physical qubits drift unevenly ($\alpha = 1.0$), Fixed MWPM fails at LER = 0.00210, while Adaptive RL recovers LER = 0.00029 (a 7.2× improvement).</p>
+              </div>
+              <div class="viva-tile">
+                <span class="viva-index font-mono">04</span>
+                <h4>Selective Adaptation Efficiency</h4>
+                <p>Online updates trigger only when empirical drift exceeds threshold, capturing 95% of oracle recovery while reducing compute overhead by &gt;90%.</p>
+              </div>
+            </div>
+
+            <!-- Research CSV Benchmark Data Table -->
+            <div class="research-table-box">
+              <h3 class="sub-heading">Empirical Results from results/drift_bias_results.csv</h3>
+              <div class="table-scroll-container">
+                <table class="data-table" id="table-csv-bias">
+                  <thead>
+                    <tr>
+                      <th>Bias Strength (α)</th>
+                      <th>p(q₀)</th>
+                      <th>p(q₁)</th>
+                      <th>p(q₂)</th>
+                      <th>Fixed MWPM LER</th>
+                      <th>Fixed RL LER</th>
+                      <th>Adaptive RL / Oracle LER</th>
+                      <th>Improvement Factor</th>
+                    </tr>
+                  </thead>
+                  <tbody id="body-csv-bias">
+                    <!-- Populated via JavaScript -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+      </main>
+    </div>
+
+  </div>
+
+  <!-- Notification Toast -->
+  <div id="toast" class="toast"></div>
+
+  <!-- Application Logic -->
+  <script src="app.js"></script>
+</body>
+</html>

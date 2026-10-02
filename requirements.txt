@@ -1,0 +1,8 @@
+stim>=1.13
+pymatching>=2.2
+gymnasium>=0.29
+numpy>=1.24
+matplotlib>=3.7
+pandas>=2.0
+fastapi>=0.100.0
+uvicorn>=0.22.0

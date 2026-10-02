@@ -1,0 +1,56 @@
+{
+  "total_steps": 15000,
+  "drift_events": [
+    3000,
+    6000,
+    9000,
+    12000
+  ],
+  "results": [
+    {
+      "strategy": "Fixed MWPM",
+      "overall_ler": 0.014333333333333333,
+      "total_online_updates": 0,
+      "update_ratio": 0.0,
+      "overhead_cost_penalty": 0.0,
+      "adaptation_speed_steps": 100,
+      "recovery_fraction": 0.3559322033898305,
+      "execution_time_s": 1.0468294620513916
+    },
+    {
+      "strategy": "Continuous RL Fine-Tune",
+      "overall_ler": 0.014333333333333333,
+      "total_online_updates": 15000,
+      "update_ratio": 1.0,
+      "overhead_cost_penalty": 300.0000000000171,
+      "adaptation_speed_steps": 100,
+      "recovery_fraction": 0.3559322033898305,
+      "execution_time_s": 0.940925121307373
+    },
+    {
+      "strategy": "Selective Adaptation (RL)",
+      "overall_ler": 0.0412,
+      "total_online_updates": 7714,
+      "update_ratio": 0.5142666666666666,
+      "overhead_cost_penalty": 333.65000000003255,
+      "adaptation_speed_steps": 186,
+      "recovery_fraction": 0.3055555555555556,
+      "execution_time_s": 6.8098695278167725
+    },
+    {
+      "strategy": "Oracle MWPM",
+      "overall_ler": 0.0656,
+      "total_online_updates": 0,
+      "update_ratio": 0.0,
+      "overhead_cost_penalty": 0.0,
+      "adaptation_speed_steps": 541,
+      "recovery_fraction": 0.32365145228215775,
+      "execution_time_s": 1.4697580337524414
+    }
+  ],
+  "selective_action_breakdown": {
+    "Direct Decode": 7286,
+    "MWPM Recalibrate": 5979,
+    "RL Fine-Tune": 1735
+  }
+}
