@@ -225,10 +225,10 @@ def run_adaptive_experiment(
         curr_state = int(obs_or["current_state"])
         synd_vec = np.array([[(curr_state >> 1) & 1, curr_state & 1]], dtype=np.uint8)
         obs_pred = int(mwpm_oracle.decode(synd_vec)[0, 0])
-        dec_action = 3 if obs_pred == 1 else (1 if curr_state == 2 else 0)
+        true_obs = int(env_oracle._current_observable)
 
-        _, _, _, _, info = env_oracle.step(dec_action)
-        oracle_errors.append(0 if info["logical_survived"] else 1)
+        is_correct = (obs_pred == true_obs)
+        oracle_errors.append(0 if is_correct else 1)
         obs_or, _ = env_oracle.reset()
 
     t_elapsed = time.time() - t_start
@@ -338,9 +338,8 @@ def run_adaptive_experiment(
         print(
             "\n" + "-" * 70 + "\n"
             "ANALYSIS OF SELECTIVE ADAPTATION VS CONTINUOUS FINE-TUNING:\n"
-            "  1. Selective Adaptation achieves near-oracle LER performance while\n"
-            f"     reducing online updates by >{1.0 - rows[2]['update_ratio']:.1%} compared to\n"
-            "     continuous RL fine-tuning.\n"
+            "  1. Selective adaptation maintained the observed decoding performance of\n"
+            f"     continuous RL while reducing online RL updates by {100.0 * (1.0 - rows[2]['update_ratio']):.1f}%.\n"
             "  2. Selective adaptation triggers updates only when drift features indicate\n"
             "     non-stationarity, drastically cutting computational overhead.\n"
             "  3. Adaptation speed measures rapid recovery following drift events,\n"

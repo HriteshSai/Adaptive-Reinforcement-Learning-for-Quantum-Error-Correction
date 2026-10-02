@@ -158,24 +158,24 @@ class AdaptiveRLController:
             self.count_recalibrate += 1
             cost_penalty = self.recal_cost
 
-            # Estimate noise parameters from statistical features
+            # Derive exact optimal correction action from estimated per-qubit rates
             p0_est, p1_est, p2_est = env.feature_extractor.estimate_per_qubit_noise()
-            mean_p = (p0_est + p1_est + p2_est) / 3.0
+            q0, q1, q2 = p0_est, p1_est, p2_est
 
-            recal_circuit = build_repetition_code_circuit(
-                mean_p, per_qubit_rates=(p0_est, p1_est, p2_est)
-            )
-            self._current_mwpm_decoder = MWPMDecoder(
-                recal_circuit, name="Recalibrated MWPM"
-            )
-
-            # MWPM prediction translated to correction action
-            synd_vec = np.array(
-                [[(curr_state >> 1) & 1, curr_state & 1]], dtype=np.uint8
-            )
-            obs_pred = int(self._current_mwpm_decoder.decode(synd_vec)[0, 0])
-            # Map MWPM observable prediction back to action (flip q2 if obs_pred=1, else no-op/q0/q1)
-            decoder_action = 3 if obs_pred == 1 else (1 if curr_state == 2 else 0)
+            if curr_state == 0:  # [0,0]
+                decoder_action = 0 if (1 - q0) * (1 - q1) * (1 - q2) >= q0 * q1 * q2 else 7
+            elif curr_state == 1:  # [0,1]
+                p001 = (1 - q0) * (1 - q1) * q2
+                p110 = q0 * q1 * (1 - q2)
+                decoder_action = 3 if p001 >= p110 else 4
+            elif curr_state == 2:  # [1,0]
+                p100 = q0 * (1 - q1) * (1 - q2)
+                p011 = (1 - q0) * q1 * q2
+                decoder_action = 1 if p100 >= p011 else 6  # Action 6 (011) under q2 bias
+            else:  # [1,1]
+                p010 = (1 - q0) * q1 * (1 - q2)
+                p101 = q0 * (1 - q1) * q2
+                decoder_action = 2 if p010 >= p101 else 5
 
         elif meta_action == 2:
             # Action 2: RL Policy Fine-tuning

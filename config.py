@@ -108,8 +108,9 @@ LOGICAL_OBSERVABLE_INDEX: int = 0
 #   state 0 = [0,0]   state 1 = [0,1]   state 2 = [1,0]   state 3 = [1,1]
 NUM_STATES: int = 4
 
-# ACTION = which single data qubit to flip back (or do nothing).
-NUM_ACTIONS: int = 4
+# ACTION = which data qubits to flip back (or do nothing).
+# 3 data qubits -> 2^3 = 8 possible correction patterns.
+NUM_ACTIONS: int = 8
 
 # action index -> correction bit-string applied to data qubits (0,1,2)
 ACTION_CORRECTIONS: dict[int, tuple[int, int, int]] = {
@@ -117,18 +118,28 @@ ACTION_CORRECTIONS: dict[int, tuple[int, int, int]] = {
     1: (1, 0, 0),   # flip data qubit 0
     2: (0, 1, 0),   # flip data qubit 1
     3: (0, 0, 1),   # flip data qubit 2
+    4: (1, 1, 0),   # flip qubits 0 and 1
+    5: (1, 0, 1),   # flip qubits 0 and 2
+    6: (0, 1, 1),   # flip qubits 1 and 2 (two-qubit flip, optimal under biased noise)
+    7: (1, 1, 1),   # flip qubits 0, 1 and 2
 }
 
-ACTION_LABELS: tuple[str, ...] = ("no-op", "flip q0", "flip q1", "flip q2")
+ACTION_LABELS: tuple[str, ...] = (
+    "no-op",
+    "flip q0",
+    "flip q1",
+    "flip q2",
+    "flip q0,q1",
+    "flip q0,q2",
+    "flip q1,q2",
+    "flip q0,q1,q2",
+)
 STATE_LABELS: tuple[str, ...] = ("[0,0]", "[0,1]", "[1,0]", "[1,1]")
 
-# The textbook minimum-weight decoder for the 3-qubit repetition code,
-# expressed in our state encoding. Index = state, value = action.
-#   [0,0] -> no error is the most likely explanation      -> action 0
-#   [0,1] -> only the (q1,q2) check fired  -> q2 flipped  -> action 3
-#   [1,0] -> only the (q0,q1) check fired  -> q0 flipped  -> action 1
-#   [1,1] -> both checks fired -> the shared qubit q1     -> action 2
+# The textbook minimum-weight policy for the 3-qubit repetition code under uniform noise.
+# Index = state, value = action.
 OPTIMAL_POLICY: tuple[int, ...] = (0, 3, 1, 2)
+
 
 # ---------------------------------------------------------------------------
 # Environment self-test (rule 9: this MUST pass before any RL training)

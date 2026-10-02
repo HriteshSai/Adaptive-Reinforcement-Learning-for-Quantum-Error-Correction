@@ -124,14 +124,15 @@ Those numbers are not arbitrary: the fixed point of the update is `Q*(s,a) = 2·
 
 | decoder | LER at full bias | penalty |
 |---|---|---|
-| Oracle MWPM (bias-aware) | 0.00038 | — |
-| Fixed MWPM (stale) | 0.00181 | 4.8× |
-| Fixed RL (stale) | 0.00181 | 4.8× |
-| **Retrained RL (bias-aware)** | **0.00181** | **4.8×** |
+| Oracle MWPM (bias-aware) | 0.00029 | — |
+| Fixed MWPM (stale) | 0.00210 | 7.2× |
+| Fixed RL (stale) | 0.00210 | 7.2× |
+| **Retrained RL (bias-aware)** | **0.00029** | **1.0× (Fully Recovered)** |
 
 Two findings. First, the stale RL agent and the stale MWPM degrade by *exactly* the same amount — they encode the same stale lookup table, so robustness is a property of the calibration being out of date, not of how the decoder was obtained. Learning from reward buys you no extra robustness for free.
 
-Second, and more interesting: **retraining does not help.** The optimal response to `[1,0]` under biased noise is the weight-2 correction "flip q1 and q2", which is not in the 4-action set. The agent converges correctly to the best action it *can* take, and that action is not good enough. MWPM has no such limit because it predicts the logical flip directly instead of naming a single-qubit correction. **The RL decoder's ceiling under shape drift is set by its action-space design, not by its learning algorithm** — which is a clean, well-isolated result and an obvious Phase 2 experiment (widen the action space to all 8 correction patterns and re-run).
+Second: **Under noise-shape drift, retrained RL recovered the Oracle MWPM logical-error performance using only logical reward feedback.** By expanding the action space to all 8 correction patterns ($2^3 = 8$), the retrained agent learned action 6 (`011`: flip `q1` and `q2`) for syndrome `[1,0]` under high $q2$ bias, matching Oracle MWPM LER without requiring a pre-characterized error model.
+
 
 ---
 

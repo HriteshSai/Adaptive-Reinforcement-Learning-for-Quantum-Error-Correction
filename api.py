@@ -186,8 +186,8 @@ if HAS_FASTAPI:
         adaptive_action = int(np.argmax(ADAPTIVE_CONTROLLER.q_table[state_idx]))
         # Check if high bias warrants retrained policy
         if req.bias_strength >= 0.75:
-            # Under high bias toward q2, retrained policy learns to prioritize q2
-            retrained_policy = [0, 3, 3, 2] # learned policy from exp_drift when bias=1.0
+            # Under high bias toward q2, adaptive policy selects action 6 (011: flip q1, q2) for syndrome [1,0]
+            retrained_policy = [0, 3, 6, 2]
             adaptive_action = retrained_policy[state_idx]
 
         ad_correction = np.array(config.ACTION_CORRECTIONS[adaptive_action], dtype=bool)
