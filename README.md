@@ -1,4 +1,4 @@
-# Quantum RL Decoder — Phase 1
+# Quantum RL Decoder — Experimental Evaluation
 
 **Can a reinforcement learning agent learn to decode quantum errors, and how badly does it break when the hardware noise drifts away from what it trained on?**
 

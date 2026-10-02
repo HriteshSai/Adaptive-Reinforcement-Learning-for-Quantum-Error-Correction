@@ -389,12 +389,14 @@ class TabularQLearner:
         -------
         None
         """
-        print("\n" + "=" * 78)
-        print("Q-TABLE".center(78))
-        print("=" * 78)
+        col_width = 16
+        total_width = 18 + 2 + self.num_actions * col_width
+        print("\n" + "=" * total_width)
+        print("Q-TABLE".center(total_width))
+        print("=" * total_width)
 
         header = f"{'state (syndrome)':>18} |" + "".join(
-            f"{label:>13}" for label in config.ACTION_LABELS
+            f"{label:>{col_width}}" for label in config.ACTION_LABELS
         )
         print(header)
         print("-" * len(header))
@@ -404,17 +406,17 @@ class TabularQLearner:
             row = f"{f'{s}  {config.STATE_LABELS[s]}':>18} |"
             for a in range(self.num_actions):
                 star = "*" if a == policy[s] else " "
-                row += f"{self.q_table[s, a]:>12.4f}{star}"
+                row += f"{self.q_table[s, a]:>{col_width - 1}.4f}{star}"
             print(row)
 
         print("-" * len(header))
         print("visits per (state, action):")
         for s in range(self.num_states):
-            counts = "  ".join(f"{self.state_visits[s, a]:>6}" for a in range(self.num_actions))
-            print(f"{f'{s}  {config.STATE_LABELS[s]}':>18} |  {counts}")
+            counts = "".join(f"{self.state_visits[s, a]:>{col_width}}" for a in range(self.num_actions))
+            print(f"{f'{s}  {config.STATE_LABELS[s]}':>18} |{counts}")
 
         print("\nlearned policy vs known-optimal minimum-weight policy")
-        print(f"  {'state':>6} {'syndrome':>10} {'learned':>12} {'optimal':>12}   match")
+        print(f"  {'state':>6} {'syndrome':>10} {'learned':>14} {'optimal':>14}   match")
         all_match = True
         for s in range(self.num_states):
             learned = config.ACTION_LABELS[policy[s]]
@@ -422,7 +424,7 @@ class TabularQLearner:
             match = policy[s] == config.OPTIMAL_POLICY[s]
             all_match &= match
             print(
-                f"  {s:>6} {config.STATE_LABELS[s]:>10} {learned:>12} {optimal:>12}"
+                f"  {s:>6} {config.STATE_LABELS[s]:>10} {learned:>14} {optimal:>14}"
                 f"   {'YES' if match else 'NO'}"
             )
         print(f"\n  policies identical: {'YES' if all_match else 'NO'}")
@@ -432,7 +434,7 @@ class TabularQLearner:
             f"  max |Q_learned - Q_expected| on optimal actions: "
             f"{report['max_abs_error_optimal_actions']:.4f}"
         )
-        print("=" * 78 + "\n")
+        print("=" * total_width + "\n")
 
     # ------------------------------------------------------------------
     # Persistence

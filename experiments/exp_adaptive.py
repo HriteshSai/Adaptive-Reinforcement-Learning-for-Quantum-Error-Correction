@@ -393,10 +393,6 @@ def run_adaptive_experiment(
                     "overall LER": [f"{r['overall_ler']:.6f}" for r in rows],
                     "updates": [r["total_online_updates"] for r in rows],
                     "update %": [f"{r['update_ratio']:.1%}" for r in rows],
-                    "adaptation speed": [
-                        f"{r['adaptation_speed_steps']} steps" for r in rows
-                    ],
-                    "recovery %": [f"{r['recovery_fraction']:.1%}" for r in rows],
                     "wall-clock": [f"{r['execution_time_s']:.2f} s" for r in rows],
                 }
             )
@@ -409,11 +405,9 @@ def run_adaptive_experiment(
                 "\n" + "-" * 70 + "\n"
                 "ANALYSIS OF SELECTIVE ADAPTATION VS CONTINUOUS FINE-TUNING:\n"
                 "  1. Selective adaptation maintained the observed decoding performance of\n"
-                f"     continuous RL while reducing online RL updates by {update_reduction:.1f}% in this run.\n"
+                f"     continuous RL while achieving an online RL update reduction of {update_reduction:.1f}% in this run.\n"
                 "  2. Selective adaptation triggers updates only when drift features indicate\n"
-                "     non-stationarity, drastically cutting computational overhead.\n"
-                "  3. Adaptation speed measures rapid recovery following drift events,\n"
-                "     confirming the utility of statistical features + adaptive control.\n"
+                "     non-stationarity, avoiding unnecessary online updates during stationary phases.\n"
                 + "-" * 70 + "\n"
             )
 
@@ -521,14 +515,6 @@ def run_adaptive_experiment(
                         f"{r['update_ratio']:.1%} +/- {r['update_ratio_std']:.1%}"
                         for r in multi_rows
                     ],
-                    "adaptation speed": [
-                        f"{r['adaptation_speed_steps']} +/- {r['speed_std']:.1f} steps"
-                        for r in multi_rows
-                    ],
-                    "recovery %": [
-                        f"{r['recovery_fraction']:.1%} +/- {r['recovery_std']:.1%}"
-                        for r in multi_rows
-                    ],
                     "wall-clock": [f"{r['execution_time_s']:.2f} s" for r in multi_rows],
                 }
             )
@@ -543,11 +529,10 @@ def run_adaptive_experiment(
                 "\n" + "-" * 70 + "\n"
                 f"ANALYSIS OF SELECTIVE ADAPTATION VS CONTINUOUS FINE-TUNING ({num_seeds} SEEDS):\n"
                 "  1. Selective adaptation maintained the observed decoding performance of\n"
-                f"     continuous RL while reducing online RL updates by {reduction_mean:.1f}% +/- {reduction_std:.1f}%.\n"
-                "  2. Selective adaptation triggers updates only when drift features indicate\n"
-                "     non-stationarity, drastically cutting computational overhead.\n"
-                "  3. Adaptation speed measures rapid recovery following drift events,\n"
-                "     confirming the utility of statistical features + adaptive control.\n"
+                f"     continuous RL: Mean LER = {sel_row['overall_ler']:.6f} +/- {sel_row['ler_std']:.6f}.\n"
+                f"  2. Online RL update reduction: Mean update reduction = {reduction_mean:.1f}% +/- {reduction_std:.1f}% across all {num_seeds} seeds.\n"
+                "  3. Updates are triggered selectively only when drift features indicate non-stationarity,\n"
+                "     avoiding redundant updates during stationary noise regimes.\n"
                 + "-" * 70 + "\n"
             )
 

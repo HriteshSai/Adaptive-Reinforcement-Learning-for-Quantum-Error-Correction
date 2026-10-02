@@ -79,7 +79,7 @@ def parse_args(argv=None) -> argparse.Namespace:
     parser.add_argument(
         "--adaptive-seeds",
         type=int,
-        default=1,
+        default=config.NUM_SEEDS,
         help="number of random seeds for adaptive experiment (Experiment 4)",
     )
     return parser.parse_args(argv)
@@ -124,7 +124,7 @@ def main(argv=None) -> int:
     logger = setup_logger("main")
     set_seed(args.seed)
 
-    print(banner("QUANTUM RL DECODER - PHASE 1", char="#"))
+    print(banner("QUANTUM RL DECODER - EXPERIMENTAL EVALUATION", char="#"))
     print(f"  seed                : {args.seed}")
     print(f"  training noise rate : {config.NOISE_RATE_TRAIN}")
     print(f"  test noise rates    : {config.NOISE_RATES_TEST}")
@@ -180,15 +180,16 @@ def main(argv=None) -> int:
             sel_row = [r for r in out["rows"] if "Selective" in r["strategy"]][0]
             update_savings_pct = 100.0 * (1.0 - sel_row['update_ratio'])
             if num_adapt_seeds > 1 and "update_ratio_std" in sel_row:
+                savings_std = 100.0 * sel_row['update_ratio_std']
                 summary["adaptive_rl"] = (
-                    f"Selective LER {sel_row['overall_ler']:.6f} ± {sel_row['ler_std']:.6f} with "
-                    f"{sel_row['update_ratio']:.1%} ± {sel_row['update_ratio_std']:.1%} online updates "
-                    f"({update_savings_pct:.1f}% reduction across {num_adapt_seeds} seeds)"
+                    f"Selective Mean LER {sel_row['overall_ler']:.6f} ± {sel_row['ler_std']:.6f} | "
+                    f"Mean online RL update reduction: {update_savings_pct:.1f}% ± {savings_std:.1f}% "
+                    f"(across {num_adapt_seeds} seeds)"
                 )
             else:
                 summary["adaptive_rl"] = (
-                    f"Selective LER {sel_row['overall_ler']:.6f} with only "
-                    f"{sel_row['update_ratio']:.1%} online updates ({update_savings_pct:.1f}% reduction in this run)"
+                    f"Selective LER {sel_row['overall_ler']:.6f} | "
+                    f"Online RL update reduction: {update_savings_pct:.1f}%"
                 )
 
     except EnvironmentVerificationError as exc:
@@ -211,7 +212,23 @@ def main(argv=None) -> int:
     print(f"\n  wall-clock time   : {elapsed:.1f} s")
     print(f"  artefacts written to: {config.RESULTS_DIR}/")
 
-    headline_reduction = f"{update_savings_pct:.1f}%" if 'update_savings_pct' in locals() else "50.4%"
+    if 'sel_row' in locals() and num_adapt_seeds > 1 and 'update_ratio_std' in sel_row:
+        savings_std = 100.0 * sel_row['update_ratio_std']
+        headline_adaptive = (
+            f"Selective adaptation achieved Mean LER {sel_row['overall_ler']:.6f} ± {sel_row['ler_std']:.6f} "
+            f"with a Mean online RL update reduction of {update_savings_pct:.1f}% ± {savings_std:.1f}% "
+            f"across {num_adapt_seeds} independent seeds."
+        )
+    elif 'update_savings_pct' in locals():
+        headline_adaptive = (
+            f"Selective adaptation maintained the observed decoding performance of continuous RL "
+            f"while achieving an online RL update reduction of {update_savings_pct:.1f}% in this run."
+        )
+    else:
+        headline_adaptive = (
+            "Selective adaptation maintained decoding performance with ~50% online RL update reduction."
+        )
+
     print(
         "\n  Headline for your report:\n"
         "    (1) A Q-table trained only on syndromes and a +/-1 logical reward\n"
@@ -220,8 +237,7 @@ def main(argv=None) -> int:
         "        is independent of p.\n"
         "    (3) Under noise-shape drift, retrained RL recovered the Oracle MWPM\n"
         "        logical-error performance using only logical reward feedback.\n"
-        "    (4) Selective adaptation maintained the observed decoding performance of\n"
-        f"        continuous RL while reducing online RL updates by {headline_reduction} in this run.\n"
+        f"    (4) {headline_adaptive}\n"
     )
     return 0
 

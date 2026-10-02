@@ -701,3 +701,361 @@ ValueError: not enough values to unpack (expected 5, got 2)
 20:05:02 | INFO    | exp_adaptive | Fixed MWPM: LER=0.014333, total updates=0, overhead cost=0.0000, wall-clock=0.59s
 20:05:03 | INFO    | exp_adaptive | Continuous RL Fine-Tune: LER=0.014333, total updates=15000, overhead cost=300.0000, wall-clock=0.53s
 20:05:06 | INFO    | exp_adaptive | Selective Adaptation (RL): LER=0.014267, total updates=7714, overhead cost=333.6500, wall-clock=3.79s
+20:57:38 | INFO    | exp_baseline | sweeping 7 noise rates with 10000 shots each
+20:57:38 | INFO    | exp_baseline | p=0.010  LER=0.000100  [0.000000, 0.000300]  (1 failures / 10000 shots, theory 0.000298)
+20:57:38 | INFO    | exp_baseline | p=0.020  LER=0.001200  [0.000600, 0.002000]  (12 failures / 10000 shots, theory 0.001184)
+20:57:38 | INFO    | exp_baseline | p=0.030  LER=0.002800  [0.001800, 0.003752]  (28 failures / 10000 shots, theory 0.002646)
+20:57:38 | INFO    | exp_baseline | p=0.050  LER=0.007300  [0.005900, 0.009057]  (73 failures / 10000 shots, theory 0.007250)
+20:57:38 | INFO    | exp_baseline | p=0.070  LER=0.014200  [0.011948, 0.016653]  (142 failures / 10000 shots, theory 0.014014)
+20:57:38 | INFO    | exp_baseline | p=0.100  LER=0.027500  [0.025490, 0.030705]  (275 failures / 10000 shots, theory 0.028000)
+20:57:38 | INFO    | exp_baseline | p=0.150  LER=0.063000  [0.058447, 0.067652]  (630 failures / 10000 shots, theory 0.060750)
+21:02:14 | INFO    | exp_baseline | sweeping 7 noise rates with 10000 shots each
+21:02:14 | INFO    | exp_baseline | p=0.010  LER=0.000100  [0.000000, 0.000300]  (1 failures / 10000 shots, theory 0.000298)
+21:02:14 | INFO    | exp_baseline | p=0.020  LER=0.001200  [0.000600, 0.002000]  (12 failures / 10000 shots, theory 0.001184)
+21:02:14 | INFO    | exp_baseline | p=0.030  LER=0.002800  [0.001800, 0.003752]  (28 failures / 10000 shots, theory 0.002646)
+21:02:14 | INFO    | exp_baseline | p=0.050  LER=0.007300  [0.005900, 0.009057]  (73 failures / 10000 shots, theory 0.007250)
+21:02:14 | INFO    | exp_baseline | p=0.070  LER=0.014200  [0.011948, 0.016653]  (142 failures / 10000 shots, theory 0.014014)
+21:02:14 | INFO    | exp_baseline | p=0.100  LER=0.027500  [0.025490, 0.030705]  (275 failures / 10000 shots, theory 0.028000)
+21:02:14 | INFO    | exp_baseline | p=0.150  LER=0.063000  [0.058447, 0.067652]  (630 failures / 10000 shots, theory 0.060750)
+21:02:24 | INFO    | exp_baseline | sweeping 7 noise rates with 10000 shots each
+21:02:24 | INFO    | exp_baseline | p=0.010  LER=0.000100  [0.000000, 0.000300]  (1 failures / 10000 shots, theory 0.000298)
+21:02:24 | INFO    | exp_baseline | p=0.020  LER=0.001200  [0.000600, 0.002000]  (12 failures / 10000 shots, theory 0.001184)
+21:02:24 | INFO    | exp_baseline | p=0.030  LER=0.002800  [0.001800, 0.003752]  (28 failures / 10000 shots, theory 0.002646)
+21:02:24 | INFO    | exp_baseline | p=0.050  LER=0.007300  [0.005900, 0.009057]  (73 failures / 10000 shots, theory 0.007250)
+21:02:24 | INFO    | exp_baseline | p=0.070  LER=0.014200  [0.011948, 0.016653]  (142 failures / 10000 shots, theory 0.014014)
+21:02:24 | INFO    | exp_baseline | p=0.100  LER=0.027500  [0.025490, 0.030705]  (275 failures / 10000 shots, theory 0.028000)
+21:02:24 | INFO    | exp_baseline | p=0.150  LER=0.063000  [0.058447, 0.067652]  (630 failures / 10000 shots, theory 0.060750)
+21:02:28 | INFO    | exp_rl_train | environment verification passed: 0.9962
+21:02:29 | INFO    | exp_rl_train | seed 42: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9979
+21:02:29 | INFO    | exp_rl_train | seed 1042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9977
+21:02:30 | INFO    | exp_rl_train | seed 2042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9971
+21:02:30 | INFO    | exp_rl_train | seed 3042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9973
+21:02:30 | INFO    | exp_rl_train | seed 4042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9970
+21:02:30 | INFO    | exp_rl_train | saved Q-table -> results\q_table.npy
+21:02:30 | INFO    | exp_rl_train | p=0.010  RL LER=0.000000  MWPM LER=0.000000  agreement=1.0000
+21:02:30 | INFO    | exp_rl_train | p=0.020  RL LER=0.000800  MWPM LER=0.000800  agreement=1.0000
+21:02:30 | INFO    | exp_rl_train | p=0.030  RL LER=0.002600  MWPM LER=0.002600  agreement=1.0000
+21:02:30 | INFO    | exp_rl_train | p=0.050  RL LER=0.007900  MWPM LER=0.007900  agreement=1.0000
+21:02:30 | INFO    | exp_rl_train | p=0.070  RL LER=0.014000  MWPM LER=0.014000  agreement=1.0000
+21:02:30 | INFO    | exp_rl_train | p=0.100  RL LER=0.029900  MWPM LER=0.029900  agreement=1.0000
+21:02:30 | INFO    | exp_rl_train | p=0.150  RL LER=0.061600  MWPM LER=0.061600  agreement=1.0000
+21:02:40 | INFO    | exp_drift | p=0.010  RL=0.000400  fixedMWPM=0.000400  oracleMWPM=0.000400  RL/oracle agreement=1.0000
+21:02:40 | INFO    | exp_drift | p=0.020  RL=0.000900  fixedMWPM=0.000900  oracleMWPM=0.000900  RL/oracle agreement=1.0000
+21:02:40 | INFO    | exp_drift | p=0.030  RL=0.002400  fixedMWPM=0.002400  oracleMWPM=0.002400  RL/oracle agreement=1.0000
+21:02:40 | INFO    | exp_drift | p=0.050  RL=0.007300  fixedMWPM=0.007300  oracleMWPM=0.007300  RL/oracle agreement=1.0000
+21:02:40 | INFO    | exp_drift | p=0.070  RL=0.016800  fixedMWPM=0.016800  oracleMWPM=0.016800  RL/oracle agreement=1.0000
+21:02:40 | INFO    | exp_drift | p=0.100  RL=0.026300  fixedMWPM=0.026300  oracleMWPM=0.026300  RL/oracle agreement=1.0000
+21:02:40 | INFO    | exp_drift | p=0.150  RL=0.061100  fixedMWPM=0.061100  oracleMWPM=0.061100  RL/oracle agreement=1.0000
+21:02:48 | INFO    | exp_drift_bias | bias=0.00 rates=(0.03, 0.03, 0.03)  RL=0.002720 fixedMWPM=0.002720 oracleMWPM=0.002720 retrainedRL=0.002720
+21:02:49 | INFO    | exp_drift_bias | bias=0.25 rates=(0.022574999999999998, 0.0318, 0.035625)  RL=0.002730 fixedMWPM=0.002730 oracleMWPM=0.002730 retrainedRL=0.002730
+21:02:49 | INFO    | exp_drift_bias | bias=0.50 rates=(0.01515, 0.033600000000000005, 0.041249999999999995)  RL=0.002410 fixedMWPM=0.002410 oracleMWPM=0.002410 retrainedRL=0.002410
+21:02:50 | INFO    | exp_drift_bias | bias=0.75 rates=(0.007725000000000002, 0.035399999999999994, 0.046875)  RL=0.002090 fixedMWPM=0.002090 oracleMWPM=0.002090 retrainedRL=0.002090
+21:02:50 | INFO    | exp_drift_bias | bias=1.00 rates=(0.00030000000000000024, 0.0372, 0.0525)  RL=0.002100 fixedMWPM=0.002100 oracleMWPM=0.000290 retrainedRL=0.000290
+21:09:44 | INFO    | exp_adaptive | running continuous dynamic drift experiment across 15000 timesteps (seed=42)
+21:09:45 | INFO    | exp_adaptive | Fixed MWPM: LER=0.014333, total updates=0, overhead cost=0.0000, wall-clock=0.44s
+21:09:45 | INFO    | exp_adaptive | Continuous RL Fine-Tune: LER=0.014333, total updates=15000, overhead cost=300.0000, wall-clock=0.46s
+21:09:48 | INFO    | exp_adaptive | Selective Adaptation (RL): LER=0.014267, total updates=7714, overhead cost=333.6500, wall-clock=3.46s
+21:11:48 | INFO    | exp_baseline | sweeping 7 noise rates with 10000 shots each
+21:11:48 | INFO    | exp_baseline | p=0.010  LER=0.000100  [0.000000, 0.000300]  (1 failures / 10000 shots, theory 0.000298)
+21:11:48 | INFO    | exp_baseline | p=0.020  LER=0.001200  [0.000600, 0.002000]  (12 failures / 10000 shots, theory 0.001184)
+21:11:48 | INFO    | exp_baseline | p=0.030  LER=0.002800  [0.001800, 0.003752]  (28 failures / 10000 shots, theory 0.002646)
+21:11:48 | INFO    | exp_baseline | p=0.050  LER=0.007300  [0.005900, 0.009057]  (73 failures / 10000 shots, theory 0.007250)
+21:11:48 | INFO    | exp_baseline | p=0.070  LER=0.014200  [0.011948, 0.016653]  (142 failures / 10000 shots, theory 0.014014)
+21:11:48 | INFO    | exp_baseline | p=0.100  LER=0.027500  [0.025490, 0.030705]  (275 failures / 10000 shots, theory 0.028000)
+21:11:48 | INFO    | exp_baseline | p=0.150  LER=0.063000  [0.058447, 0.067652]  (630 failures / 10000 shots, theory 0.060750)
+21:11:48 | INFO    | exp_rl_train | environment verification passed: 0.9962
+21:11:49 | INFO    | exp_rl_train | seed 42: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9979
+21:11:49 | INFO    | exp_rl_train | seed 1042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9977
+21:11:50 | INFO    | exp_rl_train | seed 2042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9971
+21:11:50 | INFO    | exp_rl_train | seed 3042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9973
+21:11:50 | INFO    | exp_rl_train | seed 4042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9970
+21:11:50 | INFO    | exp_rl_train | saved Q-table -> results\q_table.npy
+21:11:50 | INFO    | exp_rl_train | p=0.010  RL LER=0.000000  MWPM LER=0.000000  agreement=1.0000
+21:11:50 | INFO    | exp_rl_train | p=0.020  RL LER=0.000800  MWPM LER=0.000800  agreement=1.0000
+21:11:50 | INFO    | exp_rl_train | p=0.030  RL LER=0.002600  MWPM LER=0.002600  agreement=1.0000
+21:11:50 | INFO    | exp_rl_train | p=0.050  RL LER=0.007900  MWPM LER=0.007900  agreement=1.0000
+21:11:50 | INFO    | exp_rl_train | p=0.070  RL LER=0.014000  MWPM LER=0.014000  agreement=1.0000
+21:11:51 | INFO    | exp_rl_train | p=0.100  RL LER=0.029900  MWPM LER=0.029900  agreement=1.0000
+21:11:51 | INFO    | exp_rl_train | p=0.150  RL LER=0.061600  MWPM LER=0.061600  agreement=1.0000
+21:11:51 | INFO    | exp_drift | p=0.010  RL=0.000400  fixedMWPM=0.000400  oracleMWPM=0.000400  RL/oracle agreement=1.0000
+21:11:51 | INFO    | exp_drift | p=0.020  RL=0.000900  fixedMWPM=0.000900  oracleMWPM=0.000900  RL/oracle agreement=1.0000
+21:11:51 | INFO    | exp_drift | p=0.030  RL=0.002400  fixedMWPM=0.002400  oracleMWPM=0.002400  RL/oracle agreement=1.0000
+21:11:51 | INFO    | exp_drift | p=0.050  RL=0.007300  fixedMWPM=0.007300  oracleMWPM=0.007300  RL/oracle agreement=1.0000
+21:11:51 | INFO    | exp_drift | p=0.070  RL=0.016800  fixedMWPM=0.016800  oracleMWPM=0.016800  RL/oracle agreement=1.0000
+21:11:51 | INFO    | exp_drift | p=0.100  RL=0.026300  fixedMWPM=0.026300  oracleMWPM=0.026300  RL/oracle agreement=1.0000
+21:11:51 | INFO    | exp_drift | p=0.150  RL=0.061100  fixedMWPM=0.061100  oracleMWPM=0.061100  RL/oracle agreement=1.0000
+21:11:52 | INFO    | exp_drift_bias | bias=0.00 rates=(0.03, 0.03, 0.03)  RL=0.002720 fixedMWPM=0.002720 oracleMWPM=0.002720 retrainedRL=0.002720
+21:11:52 | INFO    | exp_drift_bias | bias=0.25 rates=(0.022574999999999998, 0.0318, 0.035625)  RL=0.002730 fixedMWPM=0.002730 oracleMWPM=0.002730 retrainedRL=0.002730
+21:11:53 | INFO    | exp_drift_bias | bias=0.50 rates=(0.01515, 0.033600000000000005, 0.041249999999999995)  RL=0.002410 fixedMWPM=0.002410 oracleMWPM=0.002410 retrainedRL=0.002410
+21:11:53 | INFO    | exp_drift_bias | bias=0.75 rates=(0.007725000000000002, 0.035399999999999994, 0.046875)  RL=0.002090 fixedMWPM=0.002090 oracleMWPM=0.002090 retrainedRL=0.002090
+21:11:54 | INFO    | exp_drift_bias | bias=1.00 rates=(0.00030000000000000024, 0.0372, 0.0525)  RL=0.002100 fixedMWPM=0.002100 oracleMWPM=0.000290 retrainedRL=0.000290
+21:11:54 | INFO    | exp_adaptive | running continuous dynamic drift experiment across 15000 timesteps (seed=42)
+21:11:54 | INFO    | exp_adaptive | Fixed MWPM: LER=0.014333, total updates=0, overhead cost=0.0000, wall-clock=0.48s
+21:11:55 | INFO    | exp_adaptive | Continuous RL Fine-Tune: LER=0.014333, total updates=15000, overhead cost=300.0000, wall-clock=0.53s
+21:11:58 | INFO    | exp_adaptive | Selective Adaptation (RL): LER=0.014267, total updates=7714, overhead cost=333.6500, wall-clock=3.54s
+21:15:18 | INFO    | exp_baseline | sweeping 7 noise rates with 10000 shots each
+21:15:18 | INFO    | exp_baseline | p=0.010  LER=0.000400  [0.000000, 0.000800]  (4 failures / 10000 shots, theory 0.000298)
+21:15:18 | INFO    | exp_baseline | p=0.020  LER=0.001300  [0.000600, 0.002000]  (13 failures / 10000 shots, theory 0.001184)
+21:15:18 | INFO    | exp_baseline | p=0.030  LER=0.002300  [0.001348, 0.003305]  (23 failures / 10000 shots, theory 0.002646)
+21:15:19 | INFO    | exp_baseline | p=0.050  LER=0.006100  [0.005048, 0.007652]  (61 failures / 10000 shots, theory 0.007250)
+21:15:19 | INFO    | exp_baseline | p=0.070  LER=0.012000  [0.009848, 0.013800]  (120 failures / 10000 shots, theory 0.014014)
+21:15:19 | INFO    | exp_baseline | p=0.100  LER=0.025400  [0.022700, 0.027857]  (254 failures / 10000 shots, theory 0.028000)
+21:15:19 | INFO    | exp_baseline | p=0.150  LER=0.056700  [0.052190, 0.061205]  (567 failures / 10000 shots, theory 0.060750)
+21:15:19 | INFO    | exp_rl_train | environment verification passed: 0.9978
+21:15:19 | INFO    | exp_rl_train | seed 1042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9977
+21:15:20 | INFO    | exp_rl_train | seed 2042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9971
+21:15:20 | INFO    | exp_rl_train | seed 3042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9973
+21:15:20 | INFO    | exp_rl_train | seed 4042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9970
+21:15:21 | INFO    | exp_rl_train | seed 5042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9972
+21:15:21 | INFO    | exp_rl_train | saved Q-table -> results\q_table.npy
+21:15:21 | INFO    | exp_rl_train | p=0.010  RL LER=0.000200  MWPM LER=0.000200  agreement=1.0000
+21:15:21 | INFO    | exp_rl_train | p=0.020  RL LER=0.001100  MWPM LER=0.001100  agreement=1.0000
+21:15:21 | INFO    | exp_rl_train | p=0.030  RL LER=0.002600  MWPM LER=0.002600  agreement=1.0000
+21:15:21 | INFO    | exp_rl_train | p=0.050  RL LER=0.006700  MWPM LER=0.006700  agreement=1.0000
+21:15:21 | INFO    | exp_rl_train | p=0.070  RL LER=0.012700  MWPM LER=0.012700  agreement=1.0000
+21:15:21 | INFO    | exp_rl_train | p=0.100  RL LER=0.024700  MWPM LER=0.024700  agreement=1.0000
+21:15:21 | INFO    | exp_rl_train | p=0.150  RL LER=0.060400  MWPM LER=0.060400  agreement=1.0000
+21:15:21 | INFO    | exp_drift | p=0.010  RL=0.000400  fixedMWPM=0.000400  oracleMWPM=0.000400  RL/oracle agreement=1.0000
+21:15:21 | INFO    | exp_drift | p=0.020  RL=0.000800  fixedMWPM=0.000800  oracleMWPM=0.000800  RL/oracle agreement=1.0000
+21:15:21 | INFO    | exp_drift | p=0.030  RL=0.003200  fixedMWPM=0.003200  oracleMWPM=0.003200  RL/oracle agreement=1.0000
+21:15:21 | INFO    | exp_drift | p=0.050  RL=0.007000  fixedMWPM=0.007000  oracleMWPM=0.007000  RL/oracle agreement=1.0000
+21:15:21 | INFO    | exp_drift | p=0.070  RL=0.015400  fixedMWPM=0.015400  oracleMWPM=0.015400  RL/oracle agreement=1.0000
+21:15:21 | INFO    | exp_drift | p=0.100  RL=0.029500  fixedMWPM=0.029500  oracleMWPM=0.029500  RL/oracle agreement=1.0000
+21:15:21 | INFO    | exp_drift | p=0.150  RL=0.058700  fixedMWPM=0.058700  oracleMWPM=0.058700  RL/oracle agreement=1.0000
+21:15:22 | INFO    | exp_drift_bias | bias=0.00 rates=(0.03, 0.03, 0.03)  RL=0.002690 fixedMWPM=0.002690 oracleMWPM=0.002690 retrainedRL=0.002690
+21:15:22 | INFO    | exp_drift_bias | bias=0.25 rates=(0.022574999999999998, 0.0318, 0.035625)  RL=0.002350 fixedMWPM=0.002350 oracleMWPM=0.002350 retrainedRL=0.002350
+21:15:23 | INFO    | exp_drift_bias | bias=0.50 rates=(0.01515, 0.033600000000000005, 0.041249999999999995)  RL=0.002460 fixedMWPM=0.002460 oracleMWPM=0.002460 retrainedRL=0.002460
+21:15:23 | INFO    | exp_drift_bias | bias=0.75 rates=(0.007725000000000002, 0.035399999999999994, 0.046875)  RL=0.002190 fixedMWPM=0.002190 oracleMWPM=0.002190 retrainedRL=0.002190
+21:15:24 | INFO    | exp_drift_bias | bias=1.00 rates=(0.00030000000000000024, 0.0372, 0.0525)  RL=0.001920 fixedMWPM=0.001920 oracleMWPM=0.000130 retrainedRL=0.000130
+21:15:24 | INFO    | exp_adaptive | running continuous dynamic drift experiment across 15000 timesteps (seed=1042)
+21:15:25 | INFO    | exp_adaptive | Fixed MWPM: LER=0.011867, total updates=0, overhead cost=0.0000, wall-clock=0.45s
+21:15:25 | INFO    | exp_adaptive | Continuous RL Fine-Tune: LER=0.011867, total updates=15000, overhead cost=300.0000, wall-clock=0.45s
+21:15:28 | INFO    | exp_adaptive | Selective Adaptation (RL): LER=0.011733, total updates=7878, overhead cost=338.1300, wall-clock=3.30s
+21:15:42 | INFO    | exp_baseline | sweeping 7 noise rates with 10000 shots each
+21:15:42 | INFO    | exp_baseline | p=0.010  LER=0.000300  [0.000100, 0.000600]  (3 failures / 10000 shots, theory 0.000298)
+21:15:42 | INFO    | exp_baseline | p=0.020  LER=0.000600  [0.000148, 0.001052]  (6 failures / 10000 shots, theory 0.001184)
+21:15:42 | INFO    | exp_baseline | p=0.030  LER=0.002500  [0.001600, 0.003400]  (25 failures / 10000 shots, theory 0.002646)
+21:15:42 | INFO    | exp_baseline | p=0.050  LER=0.006700  [0.005295, 0.008252]  (67 failures / 10000 shots, theory 0.007250)
+21:15:42 | INFO    | exp_baseline | p=0.070  LER=0.013900  [0.012300, 0.016100]  (139 failures / 10000 shots, theory 0.014014)
+21:15:42 | INFO    | exp_baseline | p=0.100  LER=0.029400  [0.026038, 0.031605]  (294 failures / 10000 shots, theory 0.028000)
+21:15:42 | INFO    | exp_baseline | p=0.150  LER=0.063500  [0.059485, 0.068663]  (635 failures / 10000 shots, theory 0.060750)
+21:15:43 | INFO    | exp_rl_train | environment verification passed: 0.9971
+21:15:43 | INFO    | exp_rl_train | seed 2042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9971
+21:15:43 | INFO    | exp_rl_train | seed 3042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9973
+21:15:44 | INFO    | exp_rl_train | seed 4042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9970
+21:15:44 | INFO    | exp_rl_train | seed 5042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9972
+21:15:44 | INFO    | exp_rl_train | seed 6042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9968
+21:15:44 | INFO    | exp_rl_train | saved Q-table -> results\q_table.npy
+21:15:45 | INFO    | exp_rl_train | p=0.010  RL LER=0.000300  MWPM LER=0.000300  agreement=1.0000
+21:15:45 | INFO    | exp_rl_train | p=0.020  RL LER=0.000500  MWPM LER=0.000500  agreement=1.0000
+21:15:45 | INFO    | exp_rl_train | p=0.030  RL LER=0.002900  MWPM LER=0.002900  agreement=1.0000
+21:15:45 | INFO    | exp_rl_train | p=0.050  RL LER=0.007100  MWPM LER=0.007100  agreement=1.0000
+21:15:45 | INFO    | exp_rl_train | p=0.070  RL LER=0.012600  MWPM LER=0.012600  agreement=1.0000
+21:15:45 | INFO    | exp_rl_train | p=0.100  RL LER=0.025800  MWPM LER=0.025800  agreement=1.0000
+21:15:45 | INFO    | exp_rl_train | p=0.150  RL LER=0.058600  MWPM LER=0.058600  agreement=1.0000
+21:15:45 | INFO    | exp_drift | p=0.010  RL=0.000200  fixedMWPM=0.000200  oracleMWPM=0.000200  RL/oracle agreement=1.0000
+21:15:45 | INFO    | exp_drift | p=0.020  RL=0.001400  fixedMWPM=0.001400  oracleMWPM=0.001400  RL/oracle agreement=1.0000
+21:15:45 | INFO    | exp_drift | p=0.030  RL=0.002500  fixedMWPM=0.002500  oracleMWPM=0.002500  RL/oracle agreement=1.0000
+21:15:45 | INFO    | exp_drift | p=0.050  RL=0.007000  fixedMWPM=0.007000  oracleMWPM=0.007000  RL/oracle agreement=1.0000
+21:15:45 | INFO    | exp_drift | p=0.070  RL=0.016200  fixedMWPM=0.016200  oracleMWPM=0.016200  RL/oracle agreement=1.0000
+21:15:45 | INFO    | exp_drift | p=0.100  RL=0.028800  fixedMWPM=0.028800  oracleMWPM=0.028800  RL/oracle agreement=1.0000
+21:15:45 | INFO    | exp_drift | p=0.150  RL=0.060600  fixedMWPM=0.060600  oracleMWPM=0.060600  RL/oracle agreement=1.0000
+21:15:46 | INFO    | exp_drift_bias | bias=0.00 rates=(0.03, 0.03, 0.03)  RL=0.002530 fixedMWPM=0.002530 oracleMWPM=0.002530 retrainedRL=0.002530
+21:15:46 | INFO    | exp_drift_bias | bias=0.25 rates=(0.022574999999999998, 0.0318, 0.035625)  RL=0.002470 fixedMWPM=0.002470 oracleMWPM=0.002470 retrainedRL=0.002470
+21:15:47 | INFO    | exp_drift_bias | bias=0.50 rates=(0.01515, 0.033600000000000005, 0.041249999999999995)  RL=0.002430 fixedMWPM=0.002430 oracleMWPM=0.002430 retrainedRL=0.002430
+21:15:47 | INFO    | exp_drift_bias | bias=0.75 rates=(0.007725000000000002, 0.035399999999999994, 0.046875)  RL=0.002460 fixedMWPM=0.002460 oracleMWPM=0.002460 retrainedRL=0.002460
+21:15:48 | INFO    | exp_drift_bias | bias=1.00 rates=(0.00030000000000000024, 0.0372, 0.0525)  RL=0.001920 fixedMWPM=0.001920 oracleMWPM=0.000310 retrainedRL=0.000310
+21:15:48 | INFO    | exp_adaptive | running continuous dynamic drift experiment across 15000 timesteps (seed=2042)
+21:15:48 | INFO    | exp_adaptive | Fixed MWPM: LER=0.013667, total updates=0, overhead cost=0.0000, wall-clock=0.44s
+21:15:49 | INFO    | exp_adaptive | Continuous RL Fine-Tune: LER=0.013667, total updates=15000, overhead cost=300.0000, wall-clock=0.45s
+21:15:52 | INFO    | exp_adaptive | Selective Adaptation (RL): LER=0.013400, total updates=7340, overhead cost=316.8700, wall-clock=3.12s
+21:15:59 | INFO    | exp_baseline | sweeping 7 noise rates with 10000 shots each
+21:15:59 | INFO    | exp_baseline | p=0.010  LER=0.000400  [0.000048, 0.000952]  (4 failures / 10000 shots, theory 0.000298)
+21:15:59 | INFO    | exp_baseline | p=0.020  LER=0.001300  [0.000600, 0.002105]  (13 failures / 10000 shots, theory 0.001184)
+21:15:59 | INFO    | exp_baseline | p=0.030  LER=0.002700  [0.001900, 0.003600]  (27 failures / 10000 shots, theory 0.002646)
+21:15:59 | INFO    | exp_baseline | p=0.050  LER=0.007600  [0.005948, 0.009452]  (76 failures / 10000 shots, theory 0.007250)
+21:15:59 | INFO    | exp_baseline | p=0.070  LER=0.012900  [0.011200, 0.014862]  (129 failures / 10000 shots, theory 0.014014)
+21:15:59 | INFO    | exp_baseline | p=0.100  LER=0.032100  [0.029147, 0.035500]  (321 failures / 10000 shots, theory 0.028000)
+21:15:59 | INFO    | exp_baseline | p=0.150  LER=0.069000  [0.063500, 0.072605]  (690 failures / 10000 shots, theory 0.060750)
+21:16:00 | INFO    | exp_rl_train | environment verification passed: 0.9972
+21:16:00 | INFO    | exp_rl_train | seed 3042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9973
+21:16:00 | INFO    | exp_rl_train | seed 4042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9970
+21:16:01 | INFO    | exp_rl_train | seed 5042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9972
+21:16:01 | INFO    | exp_rl_train | seed 6042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9968
+21:16:02 | INFO    | exp_rl_train | seed 7042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9977
+21:16:02 | INFO    | exp_rl_train | saved Q-table -> results\q_table.npy
+21:16:02 | INFO    | exp_rl_train | p=0.010  RL LER=0.000300  MWPM LER=0.000300  agreement=1.0000
+21:16:02 | INFO    | exp_rl_train | p=0.020  RL LER=0.001000  MWPM LER=0.001000  agreement=1.0000
+21:16:02 | INFO    | exp_rl_train | p=0.030  RL LER=0.002900  MWPM LER=0.002900  agreement=1.0000
+21:16:02 | INFO    | exp_rl_train | p=0.050  RL LER=0.008200  MWPM LER=0.008200  agreement=1.0000
+21:16:02 | INFO    | exp_rl_train | p=0.070  RL LER=0.014700  MWPM LER=0.014700  agreement=1.0000
+21:16:02 | INFO    | exp_rl_train | p=0.100  RL LER=0.028400  MWPM LER=0.028400  agreement=1.0000
+21:16:02 | INFO    | exp_rl_train | p=0.150  RL LER=0.065100  MWPM LER=0.065100  agreement=1.0000
+21:16:02 | INFO    | exp_drift | p=0.010  RL=0.000300  fixedMWPM=0.000300  oracleMWPM=0.000300  RL/oracle agreement=1.0000
+21:16:02 | INFO    | exp_drift | p=0.020  RL=0.001000  fixedMWPM=0.001000  oracleMWPM=0.001000  RL/oracle agreement=1.0000
+21:16:02 | INFO    | exp_drift | p=0.030  RL=0.001900  fixedMWPM=0.001900  oracleMWPM=0.001900  RL/oracle agreement=1.0000
+21:16:02 | INFO    | exp_drift | p=0.050  RL=0.007500  fixedMWPM=0.007500  oracleMWPM=0.007500  RL/oracle agreement=1.0000
+21:16:02 | INFO    | exp_drift | p=0.070  RL=0.013800  fixedMWPM=0.013800  oracleMWPM=0.013800  RL/oracle agreement=1.0000
+21:16:02 | INFO    | exp_drift | p=0.100  RL=0.027200  fixedMWPM=0.027200  oracleMWPM=0.027200  RL/oracle agreement=1.0000
+21:16:02 | INFO    | exp_drift | p=0.150  RL=0.060200  fixedMWPM=0.060200  oracleMWPM=0.060200  RL/oracle agreement=1.0000
+21:16:03 | INFO    | exp_drift_bias | bias=0.00 rates=(0.03, 0.03, 0.03)  RL=0.002560 fixedMWPM=0.002560 oracleMWPM=0.002560 retrainedRL=0.002560
+21:16:03 | INFO    | exp_drift_bias | bias=0.25 rates=(0.022574999999999998, 0.0318, 0.035625)  RL=0.002860 fixedMWPM=0.002860 oracleMWPM=0.002860 retrainedRL=0.002860
+21:16:04 | INFO    | exp_drift_bias | bias=0.50 rates=(0.01515, 0.033600000000000005, 0.041249999999999995)  RL=0.002560 fixedMWPM=0.002560 oracleMWPM=0.002560 retrainedRL=0.002560
+21:16:04 | INFO    | exp_drift_bias | bias=0.75 rates=(0.007725000000000002, 0.035399999999999994, 0.046875)  RL=0.002290 fixedMWPM=0.002290 oracleMWPM=0.002290 retrainedRL=0.002290
+21:16:05 | INFO    | exp_drift_bias | bias=1.00 rates=(0.00030000000000000024, 0.0372, 0.0525)  RL=0.001910 fixedMWPM=0.001910 oracleMWPM=0.000250 retrainedRL=0.000250
+21:16:05 | INFO    | exp_adaptive | running continuous dynamic drift experiment across 15000 timesteps (seed=3042)
+21:16:05 | INFO    | exp_adaptive | Fixed MWPM: LER=0.012533, total updates=0, overhead cost=0.0000, wall-clock=0.42s
+21:16:06 | INFO    | exp_adaptive | Continuous RL Fine-Tune: LER=0.012533, total updates=15000, overhead cost=300.0000, wall-clock=0.44s
+21:16:09 | INFO    | exp_adaptive | Selective Adaptation (RL): LER=0.012600, total updates=7683, overhead cost=330.7800, wall-clock=3.08s
+21:16:16 | INFO    | exp_baseline | sweeping 7 noise rates with 10000 shots each
+21:16:16 | INFO    | exp_baseline | p=0.010  LER=0.000300  [0.000000, 0.000700]  (3 failures / 10000 shots, theory 0.000298)
+21:16:16 | INFO    | exp_baseline | p=0.020  LER=0.000600  [0.000148, 0.001052]  (6 failures / 10000 shots, theory 0.001184)
+21:16:16 | INFO    | exp_baseline | p=0.030  LER=0.003000  [0.001795, 0.003852]  (30 failures / 10000 shots, theory 0.002646)
+21:16:16 | INFO    | exp_baseline | p=0.050  LER=0.008000  [0.006495, 0.009652]  (80 failures / 10000 shots, theory 0.007250)
+21:16:16 | INFO    | exp_baseline | p=0.070  LER=0.015400  [0.013248, 0.018062]  (154 failures / 10000 shots, theory 0.014014)
+21:16:16 | INFO    | exp_baseline | p=0.100  LER=0.029300  [0.026847, 0.032000]  (293 failures / 10000 shots, theory 0.028000)
+21:16:16 | INFO    | exp_baseline | p=0.150  LER=0.063600  [0.058643, 0.067663]  (636 failures / 10000 shots, theory 0.060750)
+21:16:17 | INFO    | exp_rl_train | environment verification passed: 0.9973
+21:16:17 | INFO    | exp_rl_train | seed 4042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9970
+21:16:17 | INFO    | exp_rl_train | seed 5042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9972
+21:16:18 | INFO    | exp_rl_train | seed 6042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9968
+21:16:18 | INFO    | exp_rl_train | seed 7042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9977
+21:16:19 | INFO    | exp_rl_train | seed 8042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9967
+21:16:19 | INFO    | exp_rl_train | saved Q-table -> results\q_table.npy
+21:16:19 | INFO    | exp_rl_train | p=0.010  RL LER=0.000400  MWPM LER=0.000400  agreement=1.0000
+21:16:19 | INFO    | exp_rl_train | p=0.020  RL LER=0.000900  MWPM LER=0.000900  agreement=1.0000
+21:16:19 | INFO    | exp_rl_train | p=0.030  RL LER=0.002200  MWPM LER=0.002200  agreement=1.0000
+21:16:19 | INFO    | exp_rl_train | p=0.050  RL LER=0.008100  MWPM LER=0.008100  agreement=1.0000
+21:16:19 | INFO    | exp_rl_train | p=0.070  RL LER=0.013800  MWPM LER=0.013800  agreement=1.0000
+21:16:19 | INFO    | exp_rl_train | p=0.100  RL LER=0.025700  MWPM LER=0.025700  agreement=1.0000
+21:16:19 | INFO    | exp_rl_train | p=0.150  RL LER=0.062500  MWPM LER=0.062500  agreement=1.0000
+21:16:19 | INFO    | exp_drift | p=0.010  RL=0.000200  fixedMWPM=0.000200  oracleMWPM=0.000200  RL/oracle agreement=1.0000
+21:16:19 | INFO    | exp_drift | p=0.020  RL=0.001200  fixedMWPM=0.001200  oracleMWPM=0.001200  RL/oracle agreement=1.0000
+21:16:19 | INFO    | exp_drift | p=0.030  RL=0.003200  fixedMWPM=0.003200  oracleMWPM=0.003200  RL/oracle agreement=1.0000
+21:16:19 | INFO    | exp_drift | p=0.050  RL=0.006500  fixedMWPM=0.006500  oracleMWPM=0.006500  RL/oracle agreement=1.0000
+21:16:19 | INFO    | exp_drift | p=0.070  RL=0.014700  fixedMWPM=0.014700  oracleMWPM=0.014700  RL/oracle agreement=1.0000
+21:16:19 | INFO    | exp_drift | p=0.100  RL=0.029400  fixedMWPM=0.029400  oracleMWPM=0.029400  RL/oracle agreement=1.0000
+21:16:19 | INFO    | exp_drift | p=0.150  RL=0.064700  fixedMWPM=0.064700  oracleMWPM=0.064700  RL/oracle agreement=1.0000
+21:16:20 | INFO    | exp_drift_bias | bias=0.00 rates=(0.03, 0.03, 0.03)  RL=0.002610 fixedMWPM=0.002610 oracleMWPM=0.002610 retrainedRL=0.002610
+21:16:21 | INFO    | exp_drift_bias | bias=0.25 rates=(0.022574999999999998, 0.0318, 0.035625)  RL=0.002480 fixedMWPM=0.002480 oracleMWPM=0.002480 retrainedRL=0.002480
+21:16:21 | INFO    | exp_drift_bias | bias=0.50 rates=(0.01515, 0.033600000000000005, 0.041249999999999995)  RL=0.002530 fixedMWPM=0.002530 oracleMWPM=0.002530 retrainedRL=0.002530
+21:16:22 | INFO    | exp_drift_bias | bias=0.75 rates=(0.007725000000000002, 0.035399999999999994, 0.046875)  RL=0.002290 fixedMWPM=0.002290 oracleMWPM=0.002290 retrainedRL=0.002290
+21:16:22 | INFO    | exp_drift_bias | bias=1.00 rates=(0.00030000000000000024, 0.0372, 0.0525)  RL=0.002140 fixedMWPM=0.002140 oracleMWPM=0.000340 retrainedRL=0.000340
+21:16:22 | INFO    | exp_adaptive | running continuous dynamic drift experiment across 15000 timesteps (seed=4042)
+21:16:23 | INFO    | exp_adaptive | Fixed MWPM: LER=0.012733, total updates=0, overhead cost=0.0000, wall-clock=0.45s
+21:16:23 | INFO    | exp_adaptive | Continuous RL Fine-Tune: LER=0.012733, total updates=15000, overhead cost=300.0000, wall-clock=0.46s
+21:16:27 | INFO    | exp_adaptive | Selective Adaptation (RL): LER=0.012533, total updates=7711, overhead cost=331.8800, wall-clock=3.51s
+21:17:14 | INFO    | exp_baseline | sweeping 7 noise rates with 10000 shots each
+21:17:14 | INFO    | exp_baseline | p=0.010  LER=0.000400  [0.000000, 0.000800]  (4 failures / 10000 shots, theory 0.000298)
+21:17:14 | INFO    | exp_baseline | p=0.020  LER=0.001300  [0.000600, 0.002000]  (13 failures / 10000 shots, theory 0.001184)
+21:17:14 | INFO    | exp_baseline | p=0.030  LER=0.002300  [0.001348, 0.003305]  (23 failures / 10000 shots, theory 0.002646)
+21:17:14 | INFO    | exp_baseline | p=0.050  LER=0.006100  [0.005048, 0.007652]  (61 failures / 10000 shots, theory 0.007250)
+21:17:14 | INFO    | exp_baseline | p=0.070  LER=0.012000  [0.009848, 0.013800]  (120 failures / 10000 shots, theory 0.014014)
+21:17:14 | INFO    | exp_baseline | p=0.100  LER=0.025400  [0.022700, 0.027857]  (254 failures / 10000 shots, theory 0.028000)
+21:17:14 | INFO    | exp_baseline | p=0.150  LER=0.056700  [0.052190, 0.061205]  (567 failures / 10000 shots, theory 0.060750)
+21:17:15 | INFO    | exp_rl_train | environment verification passed: 0.9978
+21:17:15 | INFO    | exp_rl_train | seed 1042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9977
+21:17:15 | INFO    | exp_rl_train | seed 2042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9971
+21:17:16 | INFO    | exp_rl_train | seed 3042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9973
+21:17:16 | INFO    | exp_rl_train | seed 4042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9970
+21:17:17 | INFO    | exp_rl_train | seed 5042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9972
+21:17:17 | INFO    | exp_rl_train | saved Q-table -> results\q_table.npy
+21:17:17 | INFO    | exp_rl_train | p=0.010  RL LER=0.000200  MWPM LER=0.000200  agreement=1.0000
+21:17:17 | INFO    | exp_rl_train | p=0.020  RL LER=0.001100  MWPM LER=0.001100  agreement=1.0000
+21:17:17 | INFO    | exp_rl_train | p=0.030  RL LER=0.002600  MWPM LER=0.002600  agreement=1.0000
+21:17:17 | INFO    | exp_rl_train | p=0.050  RL LER=0.006700  MWPM LER=0.006700  agreement=1.0000
+21:17:17 | INFO    | exp_rl_train | p=0.070  RL LER=0.012700  MWPM LER=0.012700  agreement=1.0000
+21:17:17 | INFO    | exp_rl_train | p=0.100  RL LER=0.024700  MWPM LER=0.024700  agreement=1.0000
+21:17:17 | INFO    | exp_rl_train | p=0.150  RL LER=0.060400  MWPM LER=0.060400  agreement=1.0000
+21:17:17 | INFO    | exp_drift | p=0.010  RL=0.000400  fixedMWPM=0.000400  oracleMWPM=0.000400  RL/oracle agreement=1.0000
+21:17:17 | INFO    | exp_drift | p=0.020  RL=0.000800  fixedMWPM=0.000800  oracleMWPM=0.000800  RL/oracle agreement=1.0000
+21:17:17 | INFO    | exp_drift | p=0.030  RL=0.003200  fixedMWPM=0.003200  oracleMWPM=0.003200  RL/oracle agreement=1.0000
+21:17:17 | INFO    | exp_drift | p=0.050  RL=0.007000  fixedMWPM=0.007000  oracleMWPM=0.007000  RL/oracle agreement=1.0000
+21:17:17 | INFO    | exp_drift | p=0.070  RL=0.015400  fixedMWPM=0.015400  oracleMWPM=0.015400  RL/oracle agreement=1.0000
+21:17:17 | INFO    | exp_drift | p=0.100  RL=0.029500  fixedMWPM=0.029500  oracleMWPM=0.029500  RL/oracle agreement=1.0000
+21:17:17 | INFO    | exp_drift | p=0.150  RL=0.058700  fixedMWPM=0.058700  oracleMWPM=0.058700  RL/oracle agreement=1.0000
+21:17:18 | INFO    | exp_drift_bias | bias=0.00 rates=(0.03, 0.03, 0.03)  RL=0.002690 fixedMWPM=0.002690 oracleMWPM=0.002690 retrainedRL=0.002690
+21:17:18 | INFO    | exp_drift_bias | bias=0.25 rates=(0.022574999999999998, 0.0318, 0.035625)  RL=0.002350 fixedMWPM=0.002350 oracleMWPM=0.002350 retrainedRL=0.002350
+21:17:19 | INFO    | exp_drift_bias | bias=0.50 rates=(0.01515, 0.033600000000000005, 0.041249999999999995)  RL=0.002460 fixedMWPM=0.002460 oracleMWPM=0.002460 retrainedRL=0.002460
+21:17:19 | INFO    | exp_drift_bias | bias=0.75 rates=(0.007725000000000002, 0.035399999999999994, 0.046875)  RL=0.002190 fixedMWPM=0.002190 oracleMWPM=0.002190 retrainedRL=0.002190
+21:17:20 | INFO    | exp_drift_bias | bias=1.00 rates=(0.00030000000000000024, 0.0372, 0.0525)  RL=0.001920 fixedMWPM=0.001920 oracleMWPM=0.000130 retrainedRL=0.000130
+21:17:20 | INFO    | exp_adaptive | running continuous dynamic drift experiment across 15000 timesteps (seed=1042)
+21:17:21 | INFO    | exp_adaptive | Fixed MWPM: LER=0.011867, total updates=0, overhead cost=0.0000, wall-clock=0.46s
+21:17:21 | INFO    | exp_adaptive | Continuous RL Fine-Tune: LER=0.011867, total updates=15000, overhead cost=300.0000, wall-clock=0.50s
+21:17:25 | INFO    | exp_adaptive | Selective Adaptation (RL): LER=0.011733, total updates=7878, overhead cost=338.1300, wall-clock=3.52s
+21:17:29 | INFO    | exp_baseline | sweeping 7 noise rates with 10000 shots each
+21:17:29 | INFO    | exp_baseline | p=0.010  LER=0.000300  [0.000100, 0.000600]  (3 failures / 10000 shots, theory 0.000298)
+21:17:29 | INFO    | exp_baseline | p=0.020  LER=0.000600  [0.000148, 0.001052]  (6 failures / 10000 shots, theory 0.001184)
+21:17:29 | INFO    | exp_baseline | p=0.030  LER=0.002500  [0.001600, 0.003400]  (25 failures / 10000 shots, theory 0.002646)
+21:17:29 | INFO    | exp_baseline | p=0.050  LER=0.006700  [0.005295, 0.008252]  (67 failures / 10000 shots, theory 0.007250)
+21:17:29 | INFO    | exp_baseline | p=0.070  LER=0.013900  [0.012300, 0.016100]  (139 failures / 10000 shots, theory 0.014014)
+21:17:29 | INFO    | exp_baseline | p=0.100  LER=0.029400  [0.026038, 0.031605]  (294 failures / 10000 shots, theory 0.028000)
+21:17:29 | INFO    | exp_baseline | p=0.150  LER=0.063500  [0.059485, 0.068663]  (635 failures / 10000 shots, theory 0.060750)
+21:17:30 | INFO    | exp_rl_train | environment verification passed: 0.9971
+21:17:30 | INFO    | exp_rl_train | seed 2042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9971
+21:17:31 | INFO    | exp_rl_train | seed 3042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9973
+21:17:31 | INFO    | exp_rl_train | seed 4042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9970
+21:17:31 | INFO    | exp_rl_train | seed 5042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9972
+21:17:32 | INFO    | exp_rl_train | seed 6042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9968
+21:17:32 | INFO    | exp_rl_train | saved Q-table -> results\q_table.npy
+21:17:32 | INFO    | exp_rl_train | p=0.010  RL LER=0.000300  MWPM LER=0.000300  agreement=1.0000
+21:17:32 | INFO    | exp_rl_train | p=0.020  RL LER=0.000500  MWPM LER=0.000500  agreement=1.0000
+21:17:32 | INFO    | exp_rl_train | p=0.030  RL LER=0.002900  MWPM LER=0.002900  agreement=1.0000
+21:17:32 | INFO    | exp_rl_train | p=0.050  RL LER=0.007100  MWPM LER=0.007100  agreement=1.0000
+21:17:32 | INFO    | exp_rl_train | p=0.070  RL LER=0.012600  MWPM LER=0.012600  agreement=1.0000
+21:17:32 | INFO    | exp_rl_train | p=0.100  RL LER=0.025800  MWPM LER=0.025800  agreement=1.0000
+21:17:32 | INFO    | exp_rl_train | p=0.150  RL LER=0.058600  MWPM LER=0.058600  agreement=1.0000
+21:17:32 | INFO    | exp_drift | p=0.010  RL=0.000200  fixedMWPM=0.000200  oracleMWPM=0.000200  RL/oracle agreement=1.0000
+21:17:32 | INFO    | exp_drift | p=0.020  RL=0.001400  fixedMWPM=0.001400  oracleMWPM=0.001400  RL/oracle agreement=1.0000
+21:17:32 | INFO    | exp_drift | p=0.030  RL=0.002500  fixedMWPM=0.002500  oracleMWPM=0.002500  RL/oracle agreement=1.0000
+21:17:32 | INFO    | exp_drift | p=0.050  RL=0.007000  fixedMWPM=0.007000  oracleMWPM=0.007000  RL/oracle agreement=1.0000
+21:17:32 | INFO    | exp_drift | p=0.070  RL=0.016200  fixedMWPM=0.016200  oracleMWPM=0.016200  RL/oracle agreement=1.0000
+21:17:32 | INFO    | exp_drift | p=0.100  RL=0.028800  fixedMWPM=0.028800  oracleMWPM=0.028800  RL/oracle agreement=1.0000
+21:17:32 | INFO    | exp_drift | p=0.150  RL=0.060600  fixedMWPM=0.060600  oracleMWPM=0.060600  RL/oracle agreement=1.0000
+21:17:33 | INFO    | exp_drift_bias | bias=0.00 rates=(0.03, 0.03, 0.03)  RL=0.002530 fixedMWPM=0.002530 oracleMWPM=0.002530 retrainedRL=0.002530
+21:17:34 | INFO    | exp_drift_bias | bias=0.25 rates=(0.022574999999999998, 0.0318, 0.035625)  RL=0.002470 fixedMWPM=0.002470 oracleMWPM=0.002470 retrainedRL=0.002470
+21:17:34 | INFO    | exp_drift_bias | bias=0.50 rates=(0.01515, 0.033600000000000005, 0.041249999999999995)  RL=0.002430 fixedMWPM=0.002430 oracleMWPM=0.002430 retrainedRL=0.002430
+21:17:35 | INFO    | exp_drift_bias | bias=0.75 rates=(0.007725000000000002, 0.035399999999999994, 0.046875)  RL=0.002460 fixedMWPM=0.002460 oracleMWPM=0.002460 retrainedRL=0.002460
+21:17:36 | INFO    | exp_drift_bias | bias=1.00 rates=(0.00030000000000000024, 0.0372, 0.0525)  RL=0.001920 fixedMWPM=0.001920 oracleMWPM=0.000310 retrainedRL=0.000310
+21:17:36 | INFO    | exp_adaptive | running continuous dynamic drift experiment across 15000 timesteps (seed=2042)
+21:17:36 | INFO    | exp_adaptive | Fixed MWPM: LER=0.013667, total updates=0, overhead cost=0.0000, wall-clock=0.43s
+21:17:37 | INFO    | exp_adaptive | Continuous RL Fine-Tune: LER=0.013667, total updates=15000, overhead cost=300.0000, wall-clock=0.46s
+21:17:40 | INFO    | exp_adaptive | Selective Adaptation (RL): LER=0.013400, total updates=7340, overhead cost=316.8700, wall-clock=3.10s
+21:49:54 | INFO    | exp_baseline | sweeping 7 noise rates with 10000 shots each
+21:49:54 | INFO    | exp_baseline | p=0.010  LER=0.000300  [0.000100, 0.000600]  (3 failures / 10000 shots, theory 0.000298)
+21:49:54 | INFO    | exp_baseline | p=0.020  LER=0.000600  [0.000148, 0.001052]  (6 failures / 10000 shots, theory 0.001184)
+21:49:54 | INFO    | exp_baseline | p=0.030  LER=0.002500  [0.001600, 0.003400]  (25 failures / 10000 shots, theory 0.002646)
+21:49:54 | INFO    | exp_baseline | p=0.050  LER=0.006700  [0.005295, 0.008252]  (67 failures / 10000 shots, theory 0.007250)
+21:49:54 | INFO    | exp_baseline | p=0.070  LER=0.013900  [0.012300, 0.016100]  (139 failures / 10000 shots, theory 0.014014)
+21:49:54 | INFO    | exp_baseline | p=0.100  LER=0.029400  [0.026038, 0.031605]  (294 failures / 10000 shots, theory 0.028000)
+21:49:54 | INFO    | exp_baseline | p=0.150  LER=0.063500  [0.059485, 0.068663]  (635 failures / 10000 shots, theory 0.060750)
+21:49:54 | INFO    | exp_rl_train | environment verification passed: 0.9971
+21:49:55 | INFO    | exp_rl_train | seed 2042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9971
+21:49:55 | INFO    | exp_rl_train | seed 3042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9973
+21:49:55 | INFO    | exp_rl_train | seed 4042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9970
+21:49:56 | INFO    | exp_rl_train | seed 5042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9972
+21:49:56 | INFO    | exp_rl_train | seed 6042: policy (0, 3, 1, 2) (optimal: True), greedy success 0.9968
+21:49:56 | INFO    | exp_rl_train | saved Q-table -> results\q_table.npy
+21:49:56 | INFO    | exp_rl_train | p=0.010  RL LER=0.000300  MWPM LER=0.000300  agreement=1.0000
+21:49:56 | INFO    | exp_rl_train | p=0.020  RL LER=0.000500  MWPM LER=0.000500  agreement=1.0000
+21:49:56 | INFO    | exp_rl_train | p=0.030  RL LER=0.002900  MWPM LER=0.002900  agreement=1.0000
+21:49:56 | INFO    | exp_rl_train | p=0.050  RL LER=0.007100  MWPM LER=0.007100  agreement=1.0000
+21:49:56 | INFO    | exp_rl_train | p=0.070  RL LER=0.012600  MWPM LER=0.012600  agreement=1.0000
+21:49:56 | INFO    | exp_rl_train | p=0.100  RL LER=0.025800  MWPM LER=0.025800  agreement=1.0000
+21:49:56 | INFO    | exp_rl_train | p=0.150  RL LER=0.058600  MWPM LER=0.058600  agreement=1.0000
+21:49:57 | INFO    | exp_drift | p=0.010  RL=0.000200  fixedMWPM=0.000200  oracleMWPM=0.000200  RL/oracle agreement=1.0000
+21:49:57 | INFO    | exp_drift | p=0.020  RL=0.001400  fixedMWPM=0.001400  oracleMWPM=0.001400  RL/oracle agreement=1.0000
+21:49:57 | INFO    | exp_drift | p=0.030  RL=0.002500  fixedMWPM=0.002500  oracleMWPM=0.002500  RL/oracle agreement=1.0000
+21:49:57 | INFO    | exp_drift | p=0.050  RL=0.007000  fixedMWPM=0.007000  oracleMWPM=0.007000  RL/oracle agreement=1.0000
+21:49:57 | INFO    | exp_drift | p=0.070  RL=0.016200  fixedMWPM=0.016200  oracleMWPM=0.016200  RL/oracle agreement=1.0000
+21:49:57 | INFO    | exp_drift | p=0.100  RL=0.028800  fixedMWPM=0.028800  oracleMWPM=0.028800  RL/oracle agreement=1.0000
+21:49:57 | INFO    | exp_drift | p=0.150  RL=0.060600  fixedMWPM=0.060600  oracleMWPM=0.060600  RL/oracle agreement=1.0000
+21:49:57 | INFO    | exp_drift_bias | bias=0.00 rates=(0.03, 0.03, 0.03)  RL=0.002530 fixedMWPM=0.002530 oracleMWPM=0.002530 retrainedRL=0.002530
+21:49:58 | INFO    | exp_drift_bias | bias=0.25 rates=(0.022574999999999998, 0.0318, 0.035625)  RL=0.002470 fixedMWPM=0.002470 oracleMWPM=0.002470 retrainedRL=0.002470
+21:49:59 | INFO    | exp_drift_bias | bias=0.50 rates=(0.01515, 0.033600000000000005, 0.041249999999999995)  RL=0.002430 fixedMWPM=0.002430 oracleMWPM=0.002430 retrainedRL=0.002430
+21:49:59 | INFO    | exp_drift_bias | bias=0.75 rates=(0.007725000000000002, 0.035399999999999994, 0.046875)  RL=0.002460 fixedMWPM=0.002460 oracleMWPM=0.002460 retrainedRL=0.002460
+21:50:00 | INFO    | exp_drift_bias | bias=1.00 rates=(0.00030000000000000024, 0.0372, 0.0525)  RL=0.001920 fixedMWPM=0.001920 oracleMWPM=0.000310 retrainedRL=0.000310
+21:50:00 | INFO    | exp_adaptive | running continuous dynamic drift experiment across 15000 timesteps (seed=2042)
+21:50:00 | INFO    | exp_adaptive | Fixed MWPM: LER=0.013667, total updates=0, overhead cost=0.0000, wall-clock=0.46s
+21:50:01 | INFO    | exp_adaptive | Continuous RL Fine-Tune: LER=0.013667, total updates=15000, overhead cost=300.0000, wall-clock=0.48s
+21:50:04 | INFO    | exp_adaptive | Selective Adaptation (RL): LER=0.013400, total updates=7340, overhead cost=316.8700, wall-clock=3.36s
