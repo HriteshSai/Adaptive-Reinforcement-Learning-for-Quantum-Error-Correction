@@ -1,6 +1,6 @@
 {
   "total_steps": 15000,
-  "seed": 999,
+  "seed": 42,
   "drift_events": [
     3000,
     6000,
@@ -10,48 +10,48 @@
   "results": [
     {
       "strategy": "Fixed MWPM",
-      "overall_ler": 0.012266666666666667,
+      "overall_ler": 0.014333333333333333,
       "total_online_updates": 0,
       "update_ratio": 0.0,
       "overhead_cost_penalty": 0.0,
-      "adaptation_speed_steps": 173,
-      "recovery_fraction": 0.0,
-      "execution_time_s": 0.5046865940093994
+      "adaptation_speed_steps": 100,
+      "recovery_fraction": 0.3559322033898305,
+      "execution_time_s": 0.5870156288146973
     },
     {
       "strategy": "Continuous RL Fine-Tune",
-      "overall_ler": 0.012266666666666667,
+      "overall_ler": 0.014333333333333333,
       "total_online_updates": 15000,
       "update_ratio": 1.0,
       "overhead_cost_penalty": 300.0000000000171,
-      "adaptation_speed_steps": 173,
-      "recovery_fraction": 0.0,
-      "execution_time_s": 0.49920105934143066
+      "adaptation_speed_steps": 100,
+      "recovery_fraction": 0.3559322033898305,
+      "execution_time_s": 0.5272395610809326
     },
     {
       "strategy": "Selective Adaptation (RL)",
-      "overall_ler": 0.0126,
-      "total_online_updates": 6838,
-      "update_ratio": 0.45586666666666664,
-      "overhead_cost_penalty": 299.7200000000237,
-      "adaptation_speed_steps": 173,
-      "recovery_fraction": 0.0,
-      "execution_time_s": 4.29104208946228
+      "overall_ler": 0.014266666666666667,
+      "total_online_updates": 7714,
+      "update_ratio": 0.5142666666666666,
+      "overhead_cost_penalty": 333.65000000003255,
+      "adaptation_speed_steps": 100,
+      "recovery_fraction": 0.3559322033898305,
+      "execution_time_s": 3.78989839553833
     },
     {
       "strategy": "Oracle MWPM",
-      "overall_ler": 0.0028666666666666667,
+      "overall_ler": 0.014133333333333333,
       "total_online_updates": 0,
       "update_ratio": 0.0,
       "overhead_cost_penalty": 0.0,
-      "adaptation_speed_steps": 235,
-      "recovery_fraction": 1.0,
-      "execution_time_s": 0.5205898284912109
+      "adaptation_speed_steps": 100,
+      "recovery_fraction": 0.3559322033898305,
+      "execution_time_s": 0.9338057041168213
     }
   ],
   "selective_action_breakdown": {
-    "Direct Decode": 8162,
-    "MWPM Recalibrate": 5432,
-    "RL Fine-Tune": 1406
+    "Direct Decode": 7286,
+    "MWPM Recalibrate": 5979,
+    "RL Fine-Tune": 1735
   }
 }
