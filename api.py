@@ -156,18 +156,16 @@ if HAS_FASTAPI:
         rl_action = int(np.argmax(BASE_Q_TABLE[state_idx]))
         rl_correction = np.array(config.ACTION_CORRECTIONS[rl_action], dtype=bool)
         rl_residual = np.logical_xor(errors, rl_correction)
-        rl_survived = not bool(np.any(rl_residual))
+        rl_survived = bool(int(rl_correction[config.LOGICAL_OBSERVABLE_QUBIT]) == true_obs_flip)
 
         # --- (B) Fixed MWPM Decoder ---
         # Fixed MWPM matching graph calibrated at p=0.03
         syndrome_arr = np.array([[s0, s1]], dtype=np.uint8)
         mwpm_pred_flip = int(MWPM_FIXED.decode(syndrome_arr)[0, 0])
-        # In repetition code, optimal action mapping to fix observable is action 3 if pred=1 else action 0/1/2
-        # For standard minimum-weight policy at symmetric noise:
         fixed_policy_action = config.OPTIMAL_POLICY[state_idx]
         fx_correction = np.array(config.ACTION_CORRECTIONS[fixed_policy_action], dtype=bool)
         fx_residual = np.logical_xor(errors, fx_correction)
-        fx_survived = not bool(np.any(fx_residual))
+        fx_survived = bool(int(fx_correction[config.LOGICAL_OBSERVABLE_QUBIT]) == true_obs_flip)
 
         # --- (C) Oracle MWPM Decoder ---
         # Calibrated on the exact safe_rates
@@ -192,7 +190,7 @@ if HAS_FASTAPI:
 
         ad_correction = np.array(config.ACTION_CORRECTIONS[adaptive_action], dtype=bool)
         ad_residual = np.logical_xor(errors, ad_correction)
-        ad_survived = not bool(np.any(ad_residual))
+        ad_survived = bool(int(ad_correction[config.LOGICAL_OBSERVABLE_QUBIT]) == true_obs_flip)
 
         return {
             "physical_errors": [int(e) for e in errors],

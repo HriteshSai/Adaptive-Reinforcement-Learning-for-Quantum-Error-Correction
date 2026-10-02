@@ -180,7 +180,7 @@ HISTORY_WINDOW_SIZE: int = 4
 STATISTICAL_WINDOW_SIZE: int = 200
 SHORT_WINDOW_SIZE: int = 40
 
-# Meta-controller Action Space:
+# Adaptive Controller Action Space:
 #   0: Direct Decoding (no update cost)
 #   1: MWPM Recalibration (rebuild matching graph from statistical features)
 #   2: RL Policy Fine-tuning (update Q-table entry online)
@@ -218,5 +218,8 @@ BIAS_PLOT: str = "drift_bias_comparison.png"
 ADAPTIVE_CSV: str = "adaptive_drift_results.csv"
 ADAPTIVE_PLOT: str = "adaptive_drift_comparison.png"
 ADAPTIVE_METADATA: str = "adaptive_metadata.json"
+ADAPTIVE_MULTISEED_CSV: str = "adaptive_drift_multiseed.csv"
+ADAPTIVE_MULTISEED_METADATA: str = "adaptive_drift_multiseed.json"
 LOG_FILE: str = "run.log"
+
 

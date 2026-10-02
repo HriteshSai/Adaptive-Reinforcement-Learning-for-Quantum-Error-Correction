@@ -76,6 +76,12 @@ def parse_args(argv=None) -> argparse.Namespace:
     parser.add_argument(
         "--seed", type=int, default=config.SEED, help="base random seed"
     )
+    parser.add_argument(
+        "--adaptive-seeds",
+        type=int,
+        default=1,
+        help="number of random seeds for adaptive experiment (Experiment 4)",
+    )
     return parser.parse_args(argv)
 
 
@@ -169,13 +175,21 @@ def main(argv=None) -> int:
 
         # 5. Adaptive RL ------------------------------------------------
         if args.experiment in ("all", "adaptive"):
-            out = run_adaptive_experiment(seed=args.seed)
+            num_adapt_seeds = 1 if args.quick else args.adaptive_seeds
+            out = run_adaptive_experiment(seed=args.seed, num_seeds=num_adapt_seeds)
             sel_row = [r for r in out["rows"] if "Selective" in r["strategy"]][0]
             update_savings_pct = 100.0 * (1.0 - sel_row['update_ratio'])
-            summary["adaptive_rl"] = (
-                f"Selective LER {sel_row['overall_ler']:.6f} with only "
-                f"{sel_row['update_ratio']:.1%} online updates ({update_savings_pct:.1f}% reduction in this run)"
-            )
+            if num_adapt_seeds > 1 and "update_ratio_std" in sel_row:
+                summary["adaptive_rl"] = (
+                    f"Selective LER {sel_row['overall_ler']:.6f} ± {sel_row['ler_std']:.6f} with "
+                    f"{sel_row['update_ratio']:.1%} ± {sel_row['update_ratio_std']:.1%} online updates "
+                    f"({update_savings_pct:.1f}% reduction across {num_adapt_seeds} seeds)"
+                )
+            else:
+                summary["adaptive_rl"] = (
+                    f"Selective LER {sel_row['overall_ler']:.6f} with only "
+                    f"{sel_row['update_ratio']:.1%} online updates ({update_savings_pct:.1f}% reduction in this run)"
+                )
 
     except EnvironmentVerificationError as exc:
         logger.error("environment verification failed: %s", exc)

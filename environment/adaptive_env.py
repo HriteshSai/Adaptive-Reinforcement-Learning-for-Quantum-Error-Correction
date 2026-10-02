@@ -319,8 +319,14 @@ class DynamicDriftQECEnv(gym.Env):
         action = int(action)
         correction = np.array(config.ACTION_CORRECTIONS[action], dtype=bool)
         residual = np.logical_xor(self._current_error, correction)
-        survived = not bool(np.any(residual))
-        reward = 1.0 if survived else -1.0
+        perfect_restoration = not bool(np.any(residual))
+
+        # Logical observable evaluation: did the readout qubit survive after correction?
+        obs_prediction = bool(correction[config.LOGICAL_OBSERVABLE_QUBIT])
+        logical_survived = bool(obs_prediction == self._current_observable)
+
+        # Environment RL reward: penalizes uncorrected / corrupted quantum states
+        reward = 1.0 if perfect_restoration else -1.0
 
         self._episode_open = False
         self.step_counter += 1
@@ -332,7 +338,10 @@ class DynamicDriftQECEnv(gym.Env):
         }
 
         info = {
-            "logical_survived": survived,
+            "logical_survived": logical_survived,
+            "perfect_restoration": perfect_restoration,
+            "obs_prediction": int(obs_prediction),
+            "true_observable": int(self._current_observable),
             "true_error": self._current_error.astype(np.uint8).tolist(),
             "residual": residual.astype(np.uint8).tolist(),
             "current_p": self._current_noise,

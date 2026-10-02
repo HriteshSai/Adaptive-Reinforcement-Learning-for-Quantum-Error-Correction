@@ -1,5 +1,6 @@
 {
   "total_steps": 15000,
+  "seed": 999,
   "drift_events": [
     3000,
     6000,
@@ -15,7 +16,7 @@
       "overhead_cost_penalty": 0.0,
       "adaptation_speed_steps": 173,
       "recovery_fraction": 0.0,
-      "execution_time_s": 0.450014591217041
+      "execution_time_s": 0.5046865940093994
     },
     {
       "strategy": "Continuous RL Fine-Tune",
@@ -25,17 +26,17 @@
       "overhead_cost_penalty": 300.0000000000171,
       "adaptation_speed_steps": 173,
       "recovery_fraction": 0.0,
-      "execution_time_s": 0.4859354496002197
+      "execution_time_s": 0.49920105934143066
     },
     {
       "strategy": "Selective Adaptation (RL)",
-      "overall_ler": 0.012266666666666667,
+      "overall_ler": 0.0126,
       "total_online_updates": 6838,
       "update_ratio": 0.45586666666666664,
       "overhead_cost_penalty": 299.7200000000237,
       "adaptation_speed_steps": 173,
       "recovery_fraction": 0.0,
-      "execution_time_s": 0.7232117652893066
+      "execution_time_s": 4.29104208946228
     },
     {
       "strategy": "Oracle MWPM",
@@ -45,7 +46,7 @@
       "overhead_cost_penalty": 0.0,
       "adaptation_speed_steps": 235,
       "recovery_fraction": 1.0,
-      "execution_time_s": 0.6976828575134277
+      "execution_time_s": 0.5205898284912109
     }
   ],
   "selective_action_breakdown": {

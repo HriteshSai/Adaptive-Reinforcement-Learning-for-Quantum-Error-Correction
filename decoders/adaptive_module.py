@@ -1,7 +1,7 @@
 """
 decoders/adaptive_module.py
 ===========================
-Adaptive RL Decision Module and Meta-Controller.
+Adaptive Decision Module and Syndrome-Statistics-Based Controller.
 
 Objectives Met:
 - Designs an adaptive decision module selecting:
@@ -23,17 +23,44 @@ from decoders.mwpm_decoder import MWPMDecoder
 from decoders.rl_decoder import RLDecoder
 
 
+def mwpm_to_action(curr_state: int, obs_pred: int) -> int:
+    """Map syndrome state and PyMatching observable prediction to physical correction action.
+
+    State 0 [0, 0]: Action 7 (111) if obs_pred == 1 else 0 (000)
+    State 1 [0, 1]: Action 3 (001) if obs_pred == 1 else 4 (110)
+    State 2 [1, 0]: Action 6 (011) if obs_pred == 1 else 1 (100)
+    State 3 [1, 1]: Action 5 (101) if obs_pred == 1 else 2 (010)
+
+    Parameters
+    ----------
+    curr_state : int in {0, 1, 2, 3}
+    obs_pred : int in {0, 1}
+
+    Returns
+    -------
+    int in {0..7}
+    """
+    if curr_state == 0:
+        return 7 if obs_pred == 1 else 0
+    elif curr_state == 1:
+        return 3 if obs_pred == 1 else 4
+    elif curr_state == 2:
+        return 6 if obs_pred == 1 else 1
+    else:  # curr_state == 3
+        return 5 if obs_pred == 1 else 2
+
+
 class AdaptiveRLController:
-    """Meta-Controller evaluating syndrome drift features to select adaptation strategy.
+    """Syndrome-statistics-based adaptive controller evaluating syndrome drift features.
 
     Action choices:
         0: Direct Decoding (no update cost)
-        1: MWPM Recalibration (rebuild matching graph from statistical features)
+        1: MWPM Recalibration (rebuild PyMatching graph from statistical features)
         2: RL Policy Fine-Tuning (perform online Q-table update)
 
     Parameters
     ----------
-    base_q_table : np.ndarray, shape (4, 4)
+    base_q_table : np.ndarray, shape (4, NUM_ACTIONS)
         Initial Q-table trained on baseline noise.
     drift_threshold : float
         Threshold on drift indicator feature D to trigger adaptation.
@@ -154,28 +181,29 @@ class AdaptiveRLController:
             decoder_action = self.rl_decoder.decode(curr_state)
 
         elif meta_action == 1:
-            # Action 1: MWPM Recalibration
+            # Action 1: MWPM Recalibration via PyMatching
             self.count_recalibrate += 1
             cost_penalty = self.recal_cost
 
-            # Derive exact optimal correction action from estimated per-qubit rates
+            # Rebuild PyMatching decoder using estimated per-qubit noise rates
             p0_est, p1_est, p2_est = env.feature_extractor.estimate_per_qubit_noise()
-            q0, q1, q2 = p0_est, p1_est, p2_est
+            mean_p = float(np.mean([p0_est, p1_est, p2_est]))
+            recal_circuit = build_repetition_code_circuit(
+                p=mean_p,
+                per_qubit_rates=[p0_est, p1_est, p2_est],
+            )
+            self._current_mwpm_decoder = MWPMDecoder(recal_circuit, name="Recalibrated MWPM")
 
-            if curr_state == 0:  # [0,0]
-                decoder_action = 0 if (1 - q0) * (1 - q1) * (1 - q2) >= q0 * q1 * q2 else 7
-            elif curr_state == 1:  # [0,1]
-                p001 = (1 - q0) * (1 - q1) * q2
-                p110 = q0 * q1 * (1 - q2)
-                decoder_action = 3 if p001 >= p110 else 4
-            elif curr_state == 2:  # [1,0]
-                p100 = q0 * (1 - q1) * (1 - q2)
-                p011 = (1 - q0) * q1 * q2
-                decoder_action = 1 if p100 >= p011 else 6  # Action 6 (011) under q2 bias
-            else:  # [1,1]
-                p010 = (1 - q0) * q1 * (1 - q2)
-                p101 = q0 * (1 - q1) * q2
-                decoder_action = 2 if p010 >= p101 else 5
+            # Update active policy from PyMatching across all 4 syndrome states
+            for s in range(config.NUM_STATES):
+                synd_vec = np.array([[(s >> 1) & 1, s & 1]], dtype=np.uint8)
+                pred = int(self._current_mwpm_decoder.decode(synd_vec)[0, 0])
+                best_act = mwpm_to_action(s, pred)
+                self.q_table[s, :] = -1.0
+                self.q_table[s, best_act] = 1.0
+
+            self.rl_decoder.q_table = self.q_table.copy()
+            decoder_action = int(np.argmax(self.q_table[curr_state]))
 
         elif meta_action == 2:
             # Action 2: RL Policy Fine-tuning

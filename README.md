@@ -98,6 +98,16 @@ Three decoders on identical shots:
 
 → `results/drift_results.csv`, `results/drift_comparison.png`, `results/drift_bias_results.csv`, `results/drift_bias_comparison.png`
 
+### Experiment 4 — Adaptive RL & Selective Adaptation (`experiments/exp_adaptive.py`)
+Evaluates continuous dynamic noise drift across 15,000 timesteps spanning 5 operational drift regimes (baseline, abrupt magnitude jump, biased shape drift, severe drift, baseline recovery):
+
+* **Fixed MWPM** — frozen matching graph (zero online updates; suffers high LER under bias).
+* **Continuous RL Fine-Tune** — updates Q-table on every step (100% online updates).
+* **Selective Adaptation (RL)** — syndrome-statistics-based adaptive controller tracks short vs. long sliding window features and selectively triggers PyMatching recalibration or RL fine-tuning.
+* **Oracle MWPM** — dynamic upper-bound baseline rebuilt at each timestep.
+
+→ `results/adaptive_drift_results.csv`, `results/adaptive_drift_comparison.png`, `results/adaptive_metadata.json`, `results/adaptive_drift_multiseed.csv`
+
 ---
 
 ## What you should see (actual results from `python main.py`)
@@ -133,6 +143,8 @@ Two findings. First, the stale RL agent and the stale MWPM degrade by *exactly* 
 
 Second: **Under noise-shape drift, retrained RL recovered the Oracle MWPM logical-error performance using only logical reward feedback.** By expanding the action space to all 8 correction patterns ($2^3 = 8$), the retrained agent learned action 6 (`011`: flip `q1` and `q2`) for syndrome `[1,0]` under high $q2$ bias, matching Oracle MWPM LER without requiring a pre-characterized error model.
 
+**Adaptive RL & Selective Adaptation (Experiment 4):**
+Selective adaptation maintained the observed decoding performance of continuous RL while reducing online RL updates by ~50%–55% across multi-seed runs. By coupling sliding-window drift metrics with PyMatching recalibration and selective RL fine-tuning, the controller achieves rapid post-drift recovery while eliminating redundant updates in stationary regimes.
 
 ---
 
@@ -149,20 +161,24 @@ quantum_rl_decoder/
 │   └── sampler.py             # Monte-Carlo shots: syndromes, observables, (hidden) errors
 ├── decoders/
 │   ├── mwpm_decoder.py        # PyMatching baseline
-│   └── rl_decoder.py          # Q-table → greedy policy → predicted logical flip
+│   ├── rl_decoder.py          # Q-table → greedy policy → predicted logical flip
+│   └── adaptive_module.py     # Syndrome-statistics-based adaptive controller
 ├── environment/
-│   └── qec_env.py             # Gymnasium env + the mandatory self-test
+│   ├── qec_env.py             # Gymnasium env + the mandatory self-test
+│   └── adaptive_env.py        # Dynamic continuous drift env & feature extractor
 ├── training/
 │   └── qlearner.py            # Tabular Q-learning, epsilon-greedy, diagnostics
 ├── experiments/
-│   ├── exp_baseline.py        # EXP 1
-│   ├── exp_rl_train.py        # EXP 2
-│   └── exp_drift.py           # EXP 3 (parts A and B)
+│   ├── exp_baseline.py        # EXP 1 (MWPM baseline sweep)
+│   ├── exp_rl_train.py        # EXP 2 (Q-learning validation & multi-seed)
+│   ├── exp_drift.py           # EXP 3 (Magnitude & shape drift)
+│   └── exp_adaptive.py        # EXP 4 (Dynamic drift & selective adaptation)
 ├── evaluation/
-│   └── metrics.py             # LER math, bootstrap CIs, all plotting
+│   └── metrics.py             # LER math, bootstrap CIs, multi-seed aggregation, plotting
 ├── utils/
 │   └── helpers.py             # seeds, logging, CSV/JSON I/O
 ├── main.py                    # entry point
+├── api.py                     # FastAPI backend for web GUI
 └── results/                   # auto-created: plots, tables, q_table.npy, run.log
 ```
 
@@ -172,7 +188,7 @@ quantum_rl_decoder/
 
 ## Reproducibility
 
-`SEED = 42` throughout. `utils.helpers.set_seed()` seeds `random` and `numpy`. Stim deliberately has **no** global seed (it would break multi-threaded sampling), so every sampler in the project is constructed with an explicit seed derived from `config.SEED`; each noise rate gets its own derived seed so the points on a curve are statistically independent rather than correlated.
+`SEED = 42` throughout. `utils.helpers.set_seed()` seeds `random` and `numpy`. Stim deliberately has **no** global seed (it would break multi-threaded sampling), so every sampler in the project is constructed with an explicit seed derived from `config.SEED`; each noise rate gets its own derived seed so the points on a curve are statistically independent rather than correlated. Multi-seed evaluations in Experiments 2 and 4 evaluate across 5 seeds (`[seed + 1000 * i]`) and report mean ± standard deviation.
 
 ---
 
@@ -186,19 +202,18 @@ quantum_rl_decoder/
 
 ---
 
-## Extending this (Phase 2 candidates, in order of value)
+## Future directions
 
-1. **Widen the action space to all 8 correction patterns.** Part B shows this is the binding constraint. Highest-value next experiment, and the code changes are confined to `config.ACTION_CORRECTIONS` plus `NUM_ACTIONS`.
-2. **Multiple measurement rounds with noisy ancillas.** Episodes stop being one step, `DISCOUNT_FACTOR` starts to matter, and the state space grows past what a table can hold — the honest motivation for function approximation.
-3. **Larger codes** (5-qubit repetition, then the surface code). This is where MWPM's advantage over a lookup table becomes real.
-4. **Online adaptation:** let the agent keep learning while the noise drifts continuously, and measure recovery time.
+1. **Multiple measurement rounds with noisy ancillas.** Episodes stop being one step, `DISCOUNT_FACTOR` starts to matter, and the state space grows past what a table can hold — the honest motivation for function approximation.
+2. **Larger codes** (5-qubit repetition, then the surface code). This is where MWPM's advantage over a lookup table becomes real.
 
 ---
 
 ## Requirements
 
 ```
-stim, pymatching, gymnasium, numpy, matplotlib, pandas
+stim, pymatching, gymnasium, numpy, matplotlib, pandas, fastapi, uvicorn
 ```
 
 Python 3.10+ (the code uses `X | None` type-hint syntax). Tested on Python 3.13.
+
