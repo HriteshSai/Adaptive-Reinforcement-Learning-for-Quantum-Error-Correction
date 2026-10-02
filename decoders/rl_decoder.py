@@ -62,7 +62,7 @@ class RLDecoder:
 
         Parameters
         ----------
-        q_table : np.ndarray, shape (4, 4)
+        q_table : np.ndarray, shape (NUM_STATES, NUM_ACTIONS)
             Trained Q-values. Produced by training.qlearner.TabularQLearner.
         name : str
             Human-readable label.
@@ -103,7 +103,7 @@ class RLDecoder:
         Returns
         -------
         int
-            Action index in {0,1,2,3}; see config.ACTION_LABELS.
+            Action index in {0..NUM_ACTIONS-1}; see config.ACTION_LABELS.
         """
         state = int(syndrome_state)
         if state not in range(config.NUM_STATES):
@@ -119,7 +119,7 @@ class RLDecoder:
         Parameters
         ----------
         action : int
-            Action index in {0,1,2,3}.
+            Action index in {0..NUM_ACTIONS-1}.
 
         Returns
         -------
@@ -197,7 +197,7 @@ class RLDecoder:
 
         Returns
         -------
-        tuple of 4 ints
+        tuple of NUM_STATES ints
             policy[state] = action, directly comparable to
             config.OPTIMAL_POLICY.
         """
@@ -235,7 +235,7 @@ class RLDecoder:
         Parameters
         ----------
         filepath : str
-            Path to a numpy .npy file holding a (4, 4) array.
+            Path to a numpy .npy file holding a (NUM_STATES, NUM_ACTIONS) array.
         name : str
 
         Returns
@@ -250,7 +250,7 @@ class RLDecoder:
 
         Parameters
         ----------
-        policy : sequence of 4 ints
+        policy : sequence of NUM_STATES ints
             policy[state] = action.
         name : str
 
@@ -273,7 +273,7 @@ def decode_syndrome_batch_to_actions(q_table: np.ndarray, syndromes: np.ndarray)
 
     Parameters
     ----------
-    q_table : np.ndarray, shape (4, 4)
+    q_table : np.ndarray, shape (NUM_STATES, NUM_ACTIONS)
     syndromes : np.ndarray, shape (num_shots, 2)
 
     Returns

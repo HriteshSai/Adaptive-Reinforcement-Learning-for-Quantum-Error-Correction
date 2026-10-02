@@ -219,10 +219,15 @@ def run_adaptive_single_seed(
         curr_state = int(obs_or["current_state"])
         synd_vec = np.array([[(curr_state >> 1) & 1, curr_state & 1]], dtype=np.uint8)
         obs_pred = int(mwpm_oracle.decode(synd_vec)[0, 0])
-        true_obs = int(env_oracle._current_observable)
 
-        is_correct = (obs_pred == true_obs)
-        oracle_errors.append(0 if is_correct else 1)
+        # Map MWPM observable prediction to a physical correction action, then
+        # pass it through env.step so the LER is scored by the same
+        # info["logical_survived"] path used by the three main strategies.
+        # This makes all four LER values strictly apples-to-apples.
+        from decoders.adaptive_module import mwpm_to_action
+        oracle_action = mwpm_to_action(curr_state, obs_pred)
+        _, _, _, _, info = env_oracle.step(oracle_action)
+        oracle_errors.append(0 if info["logical_survived"] else 1)
         obs_or, _ = env_oracle.reset()
 
     t_elapsed = time.time() - t_start

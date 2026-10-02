@@ -1,13 +1,13 @@
 """
 training/qlearner.py
 ====================
-Tabular Q-learning for the 4-state / 4-action QEC decoding problem.
+Tabular Q-learning for the 4-state / 8-action QEC decoding problem.
 
 -----------------------------------------------------------------------
 WHY TABULAR IS THE RIGHT CHOICE HERE (project rule 3)
 -----------------------------------------------------------------------
-The state space has 4 elements and the action space has 4, so the entire
-value function is 16 numbers. A neural network would add approximation error,
+The state space has 4 elements and the action space has 8, so the entire
+value function is 32 numbers. A neural network would add approximation error,
 optimiser noise and 500 lines of debugging for exactly zero representational
 benefit. A table is also *inspectable*: you can print it, compare it against
 the analytically optimal policy, and know with certainty whether the agent
@@ -155,7 +155,7 @@ class TabularQLearner:
     def select_action(self, state: int, greedy: bool = False) -> int:
         """Choose an action with an epsilon-greedy rule.
 
-        Exploration matters even in a 4x4 problem: the agent has to try
+        Exploration matters even in a 4×8 problem: the agent has to try
         "flip q1" on syndrome [1,1] at least a few times before it can know
         that it beats the alternatives. Epsilon starts at 1.0 (pure
         exploration) and decays towards EPSILON_END.
@@ -224,7 +224,7 @@ class TabularQLearner:
 
         Returns
         -------
-        q_table : np.ndarray, shape (4, 4)
+        q_table : np.ndarray, shape (NUM_STATES, NUM_ACTIONS)
             The trained table (also available as `self.q_table`).
         history : list of float
             Per-episode rewards, in order. Extra diagnostics (epsilon trace,
@@ -462,7 +462,7 @@ class TabularQLearner:
 
         Returns
         -------
-        np.ndarray, shape (4, 4)
+        np.ndarray, shape (NUM_STATES, NUM_ACTIONS)
             The loaded table (also assigned to `self.q_table`).
 
         Raises
