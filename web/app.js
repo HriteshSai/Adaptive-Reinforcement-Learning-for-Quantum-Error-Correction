@@ -368,17 +368,42 @@ function evaluateLocally() {
   const s1 = state.errors[1] ^ state.errors[2];
   const stateIdx = 2 * s0 + s1;
   const optimalActions = [0, 3, 1, 2];
-  const actionNames = ["No correction", "Flip q0", "Flip q1", "Flip q2"];
+  const actionNames = [
+    "no-op",
+    "flip q0",
+    "flip q1",
+    "flip q2",
+    "flip q0,q1",
+    "flip q0,q2",
+    "flip q1,q2",
+    "flip q0,q1,q2",
+  ];
+  const actionCorrections = [
+    [0, 0, 0],
+    [1, 0, 0],
+    [0, 1, 0],
+    [0, 0, 1],
+    [1, 1, 0],
+    [1, 0, 1],
+    [0, 1, 1],
+    [1, 1, 1],
+  ];
+
   const fixedAction = optimalActions[stateIdx];
+  // Under high bias (strength >= 0.75), adaptive & oracle switch state 2 [1,0] to action 6 (flip q1,q2)
+  let adaptiveAction = fixedAction;
+  if (state.biasStrength >= 0.75 && stateIdx === 2) {
+    adaptiveAction = 6;
+  }
 
-  const correction = [[0,0,0], [1,0,0], [0,1,0], [0,0,1]][fixedAction];
-  const residual = state.errors.map((e, i) => e ^ correction[i]);
-  const survived = residual.every(r => r === 0);
+  const trueObs = state.errors[2];
+  const fixedSurvived = actionCorrections[fixedAction][2] === trueObs;
+  const adaptiveSurvived = actionCorrections[adaptiveAction][2] === trueObs;
 
-  updateCard('mwpm', actionNames[fixedAction], survived, survived ? 1 : -1);
-  updateCard('rl', actionNames[fixedAction], survived, survived ? 1 : -1);
-  updateCard('adaptive', actionNames[fixedAction], survived, survived ? 1 : -1);
-  updateCard('oracle', actionNames[fixedAction], survived, survived ? 1 : -1);
+  updateCard('mwpm', actionNames[fixedAction], fixedSurvived, fixedSurvived ? 1 : -1);
+  updateCard('rl', actionNames[fixedAction], fixedSurvived, fixedSurvived ? 1 : -1);
+  updateCard('adaptive', actionNames[adaptiveAction], adaptiveSurvived, adaptiveSurvived ? 1 : -1);
+  updateCard('oracle', actionNames[adaptiveAction], adaptiveSurvived, adaptiveSurvived ? 1 : -1);
 }
 
 // --------------------------------------------------------------------------
@@ -788,12 +813,29 @@ async function loadQTable() {
 }
 
 function renderQTable(data) {
+  const table = document.getElementById('q-table-element');
   const tbody = document.getElementById('q-table-body');
-  if (!tbody) return;
+  if (!table || !tbody) return;
+
+  // Dynamically generate the table header from data.action_labels
+  const thead = table.querySelector('thead');
+  if (thead && data.action_labels && data.action_labels.length > 0) {
+    let theadHtml = `<tr><th>Syndrome State</th>`;
+    data.action_labels.forEach((label, idx) => {
+      const corrStr = (data.action_corrections && data.action_corrections[idx])
+        ? `<br><span class="col-pattern font-mono">${data.action_corrections[idx].join('')}</span>`
+        : '';
+      theadHtml += `<th>Action ${idx}<br><span class="col-sub">${label}</span>${corrStr}</th>`;
+    });
+    theadHtml += `<th>Greedy Policy</th></tr>`;
+    thead.innerHTML = theadHtml;
+  }
+
   tbody.innerHTML = '';
 
   const greedyActions = data.greedy_actions || [0, 3, 1, 2];
-  document.getElementById('policy-string').textContent = `(${greedyActions.join(', ')})`;
+  const policyStr = document.getElementById('policy-string');
+  if (policyStr) policyStr.textContent = `(${greedyActions.join(', ')})`;
 
   data.q_table.forEach((row, stateIdx) => {
     const tr = document.createElement('tr');
@@ -817,13 +859,32 @@ function renderQTable(data) {
 function renderFallbackQTable() {
   const fallbackData = {
     q_table: [
-      [0.941, -0.941, -0.941, -0.941],
-      [-0.940, -0.940, -0.940, 0.940],
-      [-0.940, 0.940, -0.940, -0.940],
-      [-0.940, -0.940, 0.940, -0.940],
+      [1.000, -1.000, -1.000, -1.000, -1.000, -1.000, -1.000, -1.000],
+      [-0.998, -0.999, -0.999, 0.994, -0.999, -0.999, -0.999, -1.000],
+      [-0.999, 0.997, -0.999, -0.998, -0.999, -0.999, -0.999, -1.000],
+      [-0.999, -0.998, 0.898, -0.999, -0.999, -0.999, -0.999, -1.000],
     ],
     state_labels: ["[0,0]", "[0,1]", "[1,0]", "[1,1]"],
-    action_labels: ["No-op", "Flip q0", "Flip q1", "Flip q2"],
+    action_labels: [
+      "no-op",
+      "flip q0",
+      "flip q1",
+      "flip q2",
+      "flip q0,q1",
+      "flip q0,q2",
+      "flip q1,q2",
+      "flip q0,q1,q2",
+    ],
+    action_corrections: [
+      [0, 0, 0],
+      [1, 0, 0],
+      [0, 1, 0],
+      [0, 0, 1],
+      [1, 1, 0],
+      [1, 0, 1],
+      [0, 1, 1],
+      [1, 1, 1],
+    ],
     greedy_actions: [0, 3, 1, 2],
   };
   renderQTable(fallbackData);

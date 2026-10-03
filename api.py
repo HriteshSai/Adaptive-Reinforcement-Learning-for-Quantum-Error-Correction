@@ -96,7 +96,7 @@ if HAS_FASTAPI:
     def health():
         return {
             "status": "healthy",
-            "phase": "Quantum RL Decoder Phase 1 & Adaptive Control",
+            "phase": "Quantum RL Decoder Experimental Evaluation & Adaptive Control",
             "base_noise_train": config.NOISE_RATE_TRAIN,
             "optimal_policy": list(config.OPTIMAL_POLICY),
         }
@@ -289,6 +289,9 @@ if HAS_FASTAPI:
             "selective_updates": updates_needed,
             "continuous_updates": req.num_shots,
             "compute_savings_pct": round(
+                (1.0 - (updates_needed / max(1, req.num_shots))) * 100, 1
+            ),
+            "online_update_reduction_pct": round(
                 (1.0 - (updates_needed / max(1, req.num_shots))) * 100, 1
             ),
         }

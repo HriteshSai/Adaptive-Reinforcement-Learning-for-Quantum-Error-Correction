@@ -1349,28 +1349,43 @@ body {
 }
 
 .q-matrix-table th, .q-matrix-table td {
-  padding: 1rem 1.15rem;
+  padding: 0.75rem 0.65rem;
   text-align: center;
   border: 1px solid var(--border-subtle);
+  white-space: nowrap;
 }
 
 .q-matrix-table th {
   background: rgba(9, 13, 24, 0.95);
   color: var(--text-secondary);
   font-family: var(--font-display);
-  font-size: 0.9rem;
+  font-size: 0.82rem;
   font-weight: 600;
+  line-height: 1.35;
 }
 
 .col-sub {
-  font-size: 0.7rem;
+  font-size: 0.68rem;
   color: var(--text-muted);
   font-weight: 400;
+  display: inline-block;
+  margin-top: 2px;
+}
+
+.col-pattern {
+  font-size: 0.65rem;
+  color: var(--cyan);
+  background: rgba(0, 240, 255, 0.1);
+  padding: 1px 4px;
+  border-radius: 3px;
+  letter-spacing: 1px;
+  display: inline-block;
+  margin-top: 2px;
 }
 
 .q-matrix-table td {
   font-family: var(--font-mono);
-  font-size: 0.9rem;
+  font-size: 0.84rem;
   background: rgba(5, 7, 13, 0.5);
   transition: all 0.2s;
 }

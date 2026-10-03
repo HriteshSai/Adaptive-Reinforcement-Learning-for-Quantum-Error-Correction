@@ -53,7 +53,7 @@
           <div class="hero-metric-divider"></div>
           <div class="hero-metric-item">
             <span class="metric-num text-green">&gt;90%</span>
-            <span class="metric-label">Compute Overhead Savings</span>
+            <span class="metric-label">Online RL Update Reduction</span>
           </div>
           <div class="hero-metric-divider"></div>
           <div class="hero-metric-item">
@@ -97,7 +97,7 @@
           <div class="feature-icon-box violet-box">🧠</div>
           <h3 class="feature-title">Model-Free Tabular Q-Learning</h3>
           <p class="feature-desc">
-            One-step contextual bandit formulation. The agent learns optimal syndrome-to-correction mappings solely from binary survival rewards without prior physics equations.
+            One-step contextual bandit formulation. The agent learns optimal syndrome-to-correction mappings across all 8 actions solely from binary survival rewards.
           </p>
           <div class="feature-tag font-mono">Q-LEARNING AGENT</div>
         </div>
@@ -106,7 +106,7 @@
           <div class="feature-icon-box emerald-box">⚡</div>
           <h3 class="feature-title">Selective Drift Adaptation</h3>
           <p class="feature-desc">
-            Detects asymmetric physical qubit degradation and selectively triggers policy updates, outperforming classical matching with minimal computational overhead.
+            Detects asymmetric physical qubit degradation and selectively triggers policy updates, achieving oracle performance with significant online RL update reduction.
           </p>
           <div class="feature-tag font-mono text-cyan">ADAPTIVE CONTROLLER</div>
         </div>
@@ -126,7 +126,7 @@
       <div class="landing-abstract-card">
         <div class="abstract-badge font-mono">EXECUTIVE SUMMARY</div>
         <p class="abstract-text">
-          <strong>Research Thesis:</strong> Real quantum computers experience continuous calibration drift. Classical decoders rely on stale characterization data and suffer degraded logical error rates under asymmetric noise. This project designs a meta-controlled reinforcement learning decoder that autonomously detects hardware drift and recovers baseline fidelity with an order-of-magnitude reduction in re-calibration updates.
+          <strong>Research Thesis:</strong> Real quantum computers experience continuous calibration drift. Classical decoders rely on stale characterization data and suffer degraded logical error rates under asymmetric noise. This project designs a meta-controlled reinforcement learning decoder that autonomously detects hardware drift and recovers baseline fidelity with an order-of-magnitude reduction in online recalibration updates.
         </p>
       </div>
 
@@ -150,7 +150,7 @@
           <div>
             <div class="title-row">
               <h1 class="project-title">QUANTUM RL DECODER</h1>
-              <span class="hud-badge pulse-cyan">PHASE 1 · ADAPTIVE QEC</span>
+              <span class="hud-badge pulse-cyan">EXPERIMENTAL EVALUATION · ADAPTIVE QEC</span>
               <span class="hud-badge badge-model">STIM + PYMATCHING</span>
             </div>
             <p class="project-subtitle">Reinforcement Learning for Quantum Error Correction under Non-Stationary Hardware Drift</p>
@@ -528,9 +528,9 @@
                 </div>
 
                 <div class="kpi-box">
-                  <div class="kpi-label">Compute Efficiency</div>
+                  <div class="kpi-label">Online Update Reduction</div>
                   <div class="kpi-metric font-mono text-green" id="kpi-savings">92.0%</div>
-                  <div class="kpi-caption">Fewer updates than continuous</div>
+                  <div class="kpi-caption">Fewer updates than continuous fine-tuning</div>
                 </div>
               </div>
 
@@ -567,8 +567,8 @@
             <div class="glass-card">
               <div class="card-header">
                 <div>
-                  <h2 class="card-title">Learned Q-Table Matrix (4×4)</h2>
-                  <p class="card-desc">Q-values converged via Tabular Q-Learning. Highlighted cells represent greedy actions.</p>
+                  <h2 class="card-title">Learned Q-Table Matrix (4×8)</h2>
+                  <p class="card-desc">Q-values converged via Tabular Q-Learning. Highlighted cells represent greedy actions across all 8 correction patterns.</p>
                 </div>
                 <button id="btn-refresh-qtable" class="btn btn-ghost">Reload Table</button>
               </div>
@@ -578,10 +578,14 @@
                   <thead>
                     <tr>
                       <th>Syndrome State</th>
-                      <th>Action 0<br><span class="col-sub">No-op</span></th>
-                      <th>Action 1<br><span class="col-sub">Flip Q₀</span></th>
-                      <th>Action 2<br><span class="col-sub">Flip Q₁</span></th>
-                      <th>Action 3<br><span class="col-sub">Flip Q₂</span></th>
+                      <th>Action 0<br><span class="col-sub">No-op</span><br><span class="col-pattern font-mono">000</span></th>
+                      <th>Action 1<br><span class="col-sub">Flip Q₀</span><br><span class="col-pattern font-mono">100</span></th>
+                      <th>Action 2<br><span class="col-sub">Flip Q₁</span><br><span class="col-pattern font-mono">010</span></th>
+                      <th>Action 3<br><span class="col-sub">Flip Q₂</span><br><span class="col-pattern font-mono">001</span></th>
+                      <th>Action 4<br><span class="col-sub">Flip Q₀,Q₁</span><br><span class="col-pattern font-mono">110</span></th>
+                      <th>Action 5<br><span class="col-sub">Flip Q₀,Q₂</span><br><span class="col-pattern font-mono">101</span></th>
+                      <th>Action 6<br><span class="col-sub">Flip Q₁,Q₂</span><br><span class="col-pattern font-mono">011</span></th>
+                      <th>Action 7<br><span class="col-sub">Flip All</span><br><span class="col-pattern font-mono">111</span></th>
                       <th>Greedy Policy</th>
                     </tr>
                   </thead>
@@ -620,8 +624,8 @@
                   <div class="panel-body">Parity check (q₁, q₂) fired while (q₀, q₁) passed. Qubit 2 is the odd qubit out.</div>
                 </div>
                 <div class="panel-panel">
-                  <div class="panel-head font-mono text-cyan">Syndrome [1, 0] ➔ Action: Flip Q₀ (100)</div>
-                  <div class="panel-body">Parity check (q₀, q₁) fired while (q₁, q₂) passed. Qubit 0 is the odd qubit out.</div>
+                  <div class="panel-head font-mono text-cyan">Syndrome [1, 0] ➔ Action: Flip Q₀ (100) / Flip Q₁,Q₂ (011)</div>
+                  <div class="panel-body">Under uniform noise, flip Q₀ (100) is optimal. Under severe asymmetric drift ($p_{q2} \gg p_{q0}$), flip Q₁,Q₂ (011, Action 6) becomes most probable.</div>
                 </div>
                 <div class="panel-panel">
                   <div class="panel-head font-mono text-cyan">Syndrome [1, 1] ➔ Action: Flip Q₁ (010)</div>
@@ -630,10 +634,10 @@
               </div>
 
               <div class="xai-callout-card">
-                <h4 class="text-cyan">Why Adaptive RL Beats Fixed MWPM Under Asymmetric Drift:</h4>
+                <h4 class="text-cyan">Why Adaptive RL Recovers Oracle MWPM Under Asymmetric Drift:</h4>
                 <p>
                   When hardware noise degrades $q_2$ severely ($p_{q2} \gg p_{q0}$), weight-2 errors involving $q_2$ become more probable than single errors on $q_0$. 
-                  Fixed MWPM continues to assume uniform noise weights and guesses incorrectly, while Adaptive RL adjusts the action for state <code>[1,0]</code> from flip $q_0$ to flip $q_2$, dropping the logical error rate by <strong>over 7×</strong>.
+                  Fixed MWPM continues to assume uniform noise weights and guesses incorrectly, while Adaptive RL adjusts the action for state <code>[1,0]</code> from flip $q_0$ (Action 1: <code>100</code>) to flip $q_1, q_2$ (Action 6: <code>011</code>), dropping the logical error rate by <strong>over 7×</strong> and matching the Oracle bound.
                 </p>
               </div>
             </div>
@@ -672,7 +676,7 @@
               <div class="viva-tile">
                 <span class="viva-index font-mono">04</span>
                 <h4>Selective Adaptation Efficiency</h4>
-                <p>Online updates trigger only when empirical drift exceeds threshold, capturing 95% of oracle recovery while reducing compute overhead by &gt;90%.</p>
+                <p>Online updates trigger only when empirical drift exceeds threshold, capturing oracle recovery while reducing online RL updates by ~50%–90%.</p>
               </div>
             </div>
 

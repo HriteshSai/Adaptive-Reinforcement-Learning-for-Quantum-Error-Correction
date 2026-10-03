@@ -50,7 +50,7 @@ def main():
     print(f"   ► Web Dashboard URL : {url}")
     print(f"   ► Interactive Arena : 3-Qubit Circuit & 4-Way Decoder Duel")
     print(f"   ► Hardware Cockpit  : Noise Drift & 7.2x LER Recovery")
-    print(f"   ► Policy Inspector  : 4x4 Q-Table Explainability Matrix")
+    print(f"   ► Policy Inspector  : 4x8 Q-Table Explainability Matrix")
     print("=" * 65)
     print("   Opening browser in 1.5 seconds... Press Ctrl+C to terminate.\n")
 
