@@ -1,11 +1,11 @@
 {
   "total_steps": 15000,
   "seeds": [
+    42,
+    1042,
     2042,
     3042,
-    4042,
-    5042,
-    6042
+    4042
   ],
   "drift_events": [
     3000,
@@ -16,72 +16,72 @@
   "results": [
     {
       "strategy": "Fixed MWPM",
-      "overall_ler": 0.012813333333333335,
-      "ler_std": 0.0005893876294746758,
+      "overall_ler": 0.013026666666666667,
+      "ler_std": 0.0008708616422830899,
       "total_online_updates": 0,
       "updates_std": 0.0,
       "update_ratio": 0.0,
       "update_ratio_std": 0.0,
       "overhead_cost_penalty": 0.0,
       "overhead_std": 0.0,
-      "adaptation_speed_steps": 194,
-      "speed_std": 78.11888376058633,
-      "recovery_fraction": 0.2366045702601145,
-      "recovery_std": 0.232733158949039,
-      "execution_time_s": 0.4405066013336182
+      "adaptation_speed_steps": 187,
+      "speed_std": 84.7169404546694,
+      "recovery_fraction": 0.17194195433430698,
+      "recovery_std": 0.11681235407003292,
+      "execution_time_s": 0.43129596710205076
     },
     {
       "strategy": "Continuous RL Fine-Tune",
-      "overall_ler": 0.012813333333333335,
-      "ler_std": 0.0005893876294746758,
+      "overall_ler": 0.013026666666666667,
+      "ler_std": 0.0008708616422830899,
       "total_online_updates": 15000,
       "updates_std": 0.0,
       "update_ratio": 1.0,
       "update_ratio_std": 0.0,
       "overhead_cost_penalty": 300.0000000000171,
       "overhead_std": 0.0,
-      "adaptation_speed_steps": 194,
-      "speed_std": 78.11888376058633,
-      "recovery_fraction": 0.2366045702601145,
-      "recovery_std": 0.232733158949039,
-      "execution_time_s": 0.4448730945587158
+      "adaptation_speed_steps": 187,
+      "speed_std": 84.7169404546694,
+      "recovery_fraction": 0.17194195433430698,
+      "recovery_std": 0.11681235407003292,
+      "execution_time_s": 0.4380650997161865
     },
     {
       "strategy": "Selective Adaptation (RL)",
-      "overall_ler": 0.012733333333333336,
-      "ler_std": 0.0005215361924162117,
-      "total_online_updates": 7583,
-      "updates_std": 136.62298488907348,
-      "update_ratio": 0.5055066666666667,
-      "update_ratio_std": 0.009108198992604892,
-      "overhead_cost_penalty": 328.3580000000312,
-      "overhead_std": 6.495042417106988,
-      "adaptation_speed_steps": 194,
-      "speed_std": 78.11888376058633,
-      "recovery_fraction": 0.24548146646940805,
-      "recovery_std": 0.2481803657959966,
-      "execution_time_s": 3.366232442855835
+      "overall_ler": 0.012906666666666667,
+      "ler_std": 0.0008605941100322627,
+      "total_online_updates": 7665,
+      "updates_std": 176.54166646998664,
+      "update_ratio": 0.5110133333333333,
+      "update_ratio_std": 0.011769444431332439,
+      "overhead_cost_penalty": 330.2620000000315,
+      "overhead_std": 7.150047272571502,
+      "adaptation_speed_steps": 187,
+      "speed_std": 84.7169404546694,
+      "recovery_fraction": 0.17266790714737415,
+      "recovery_std": 0.1170383905816356,
+      "execution_time_s": 3.290864181518555
     },
     {
       "strategy": "Oracle MWPM",
-      "overall_ler": 0.012399999999999998,
-      "ler_std": 0.0006824791409103856,
+      "overall_ler": 0.012746666666666667,
+      "ler_std": 0.0008572825283028537,
       "total_online_updates": 0,
       "updates_std": 0.0,
       "update_ratio": 0.0,
       "update_ratio_std": 0.0,
       "overhead_cost_penalty": 0.0,
       "overhead_std": 0.0,
-      "adaptation_speed_steps": 194,
-      "speed_std": 78.11888376058633,
-      "recovery_fraction": 0.2366045702601145,
-      "recovery_std": 0.232733158949039,
-      "execution_time_s": 0.7521241664886474
+      "adaptation_speed_steps": 187,
+      "speed_std": 84.7169404546694,
+      "recovery_fraction": 0.17194195433430698,
+      "recovery_std": 0.11681235407003292,
+      "execution_time_s": 0.8367006301879882
     }
   ],
   "selective_action_breakdown": {
-    "Direct Decode": 7660,
-    "MWPM Recalibrate": 5669,
-    "RL Fine-Tune": 1671
+    "Direct Decode": 7286,
+    "MWPM Recalibrate": 5979,
+    "RL Fine-Tune": 1735
   }
 }

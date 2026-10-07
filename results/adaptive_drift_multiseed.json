@@ -1,11 +1,11 @@
 {
   "total_steps": 15000,
   "seeds": [
+    42,
+    1042,
     2042,
     3042,
-    4042,
-    5042,
-    6042
+    4042
   ],
   "num_seeds": 5,
   "drift_events": [
@@ -17,70 +17,160 @@
   "aggregated_results": [
     {
       "strategy": "Fixed MWPM",
-      "overall_ler": 0.012813333333333335,
-      "ler_std": 0.0005893876294746758,
+      "overall_ler": 0.013026666666666667,
+      "ler_std": 0.0008708616422830899,
       "total_online_updates": 0,
       "updates_std": 0.0,
       "update_ratio": 0.0,
       "update_ratio_std": 0.0,
       "overhead_cost_penalty": 0.0,
       "overhead_std": 0.0,
-      "adaptation_speed_steps": 194,
-      "speed_std": 78.11888376058633,
-      "recovery_fraction": 0.2366045702601145,
-      "recovery_std": 0.232733158949039,
-      "execution_time_s": 0.4405066013336182
+      "adaptation_speed_steps": 187,
+      "speed_std": 84.7169404546694,
+      "recovery_fraction": 0.17194195433430698,
+      "recovery_std": 0.11681235407003292,
+      "execution_time_s": 0.43129596710205076
     },
     {
       "strategy": "Continuous RL Fine-Tune",
-      "overall_ler": 0.012813333333333335,
-      "ler_std": 0.0005893876294746758,
+      "overall_ler": 0.013026666666666667,
+      "ler_std": 0.0008708616422830899,
       "total_online_updates": 15000,
       "updates_std": 0.0,
       "update_ratio": 1.0,
       "update_ratio_std": 0.0,
       "overhead_cost_penalty": 300.0000000000171,
       "overhead_std": 0.0,
-      "adaptation_speed_steps": 194,
-      "speed_std": 78.11888376058633,
-      "recovery_fraction": 0.2366045702601145,
-      "recovery_std": 0.232733158949039,
-      "execution_time_s": 0.4448730945587158
+      "adaptation_speed_steps": 187,
+      "speed_std": 84.7169404546694,
+      "recovery_fraction": 0.17194195433430698,
+      "recovery_std": 0.11681235407003292,
+      "execution_time_s": 0.4380650997161865
     },
     {
       "strategy": "Selective Adaptation (RL)",
-      "overall_ler": 0.012733333333333336,
-      "ler_std": 0.0005215361924162117,
-      "total_online_updates": 7583,
-      "updates_std": 136.62298488907348,
-      "update_ratio": 0.5055066666666667,
-      "update_ratio_std": 0.009108198992604892,
-      "overhead_cost_penalty": 328.3580000000312,
-      "overhead_std": 6.495042417106988,
-      "adaptation_speed_steps": 194,
-      "speed_std": 78.11888376058633,
-      "recovery_fraction": 0.24548146646940805,
-      "recovery_std": 0.2481803657959966,
-      "execution_time_s": 3.366232442855835
+      "overall_ler": 0.012906666666666667,
+      "ler_std": 0.0008605941100322627,
+      "total_online_updates": 7665,
+      "updates_std": 176.54166646998664,
+      "update_ratio": 0.5110133333333333,
+      "update_ratio_std": 0.011769444431332439,
+      "overhead_cost_penalty": 330.2620000000315,
+      "overhead_std": 7.150047272571502,
+      "adaptation_speed_steps": 187,
+      "speed_std": 84.7169404546694,
+      "recovery_fraction": 0.17266790714737415,
+      "recovery_std": 0.1170383905816356,
+      "execution_time_s": 3.290864181518555
     },
     {
       "strategy": "Oracle MWPM",
-      "overall_ler": 0.012399999999999998,
-      "ler_std": 0.0006824791409103856,
+      "overall_ler": 0.012746666666666667,
+      "ler_std": 0.0008572825283028537,
       "total_online_updates": 0,
       "updates_std": 0.0,
       "update_ratio": 0.0,
       "update_ratio_std": 0.0,
       "overhead_cost_penalty": 0.0,
       "overhead_std": 0.0,
-      "adaptation_speed_steps": 194,
-      "speed_std": 78.11888376058633,
-      "recovery_fraction": 0.2366045702601145,
-      "recovery_std": 0.232733158949039,
-      "execution_time_s": 0.7521241664886474
+      "adaptation_speed_steps": 187,
+      "speed_std": 84.7169404546694,
+      "recovery_fraction": 0.17194195433430698,
+      "recovery_std": 0.11681235407003292,
+      "execution_time_s": 0.8367006301879882
     }
   ],
   "per_seed_runs": [
+    {
+      "seed": 42,
+      "rows": [
+        {
+          "strategy": "Fixed MWPM",
+          "overall_ler": 0.014333333333333333,
+          "total_online_updates": 0,
+          "update_ratio": 0.0,
+          "overhead_cost_penalty": 0.0,
+          "adaptation_speed_steps": 100,
+          "recovery_fraction": 0.3559322033898305,
+          "execution_time_s": 0.42370176315307617
+        },
+        {
+          "strategy": "Continuous RL Fine-Tune",
+          "overall_ler": 0.014333333333333333,
+          "total_online_updates": 15000,
+          "update_ratio": 1.0,
+          "overhead_cost_penalty": 300.0000000000171,
+          "adaptation_speed_steps": 100,
+          "recovery_fraction": 0.3559322033898305,
+          "execution_time_s": 0.436084508895874
+        },
+        {
+          "strategy": "Selective Adaptation (RL)",
+          "overall_ler": 0.014266666666666667,
+          "total_online_updates": 7714,
+          "update_ratio": 0.5142666666666666,
+          "overhead_cost_penalty": 333.65000000003255,
+          "adaptation_speed_steps": 100,
+          "recovery_fraction": 0.3559322033898305,
+          "execution_time_s": 3.208688259124756
+        },
+        {
+          "strategy": "Oracle MWPM",
+          "overall_ler": 0.014133333333333333,
+          "total_online_updates": 0,
+          "update_ratio": 0.0,
+          "overhead_cost_penalty": 0.0,
+          "adaptation_speed_steps": 100,
+          "recovery_fraction": 0.3559322033898305,
+          "execution_time_s": 0.752363920211792
+        }
+      ]
+    },
+    {
+      "seed": 1042,
+      "rows": [
+        {
+          "strategy": "Fixed MWPM",
+          "overall_ler": 0.011866666666666666,
+          "total_online_updates": 0,
+          "update_ratio": 0.0,
+          "overhead_cost_penalty": 0.0,
+          "adaptation_speed_steps": 100,
+          "recovery_fraction": 0.0,
+          "execution_time_s": 0.4259634017944336
+        },
+        {
+          "strategy": "Continuous RL Fine-Tune",
+          "overall_ler": 0.011866666666666666,
+          "total_online_updates": 15000,
+          "update_ratio": 1.0,
+          "overhead_cost_penalty": 300.0000000000171,
+          "adaptation_speed_steps": 100,
+          "recovery_fraction": 0.0,
+          "execution_time_s": 0.4323999881744385
+        },
+        {
+          "strategy": "Selective Adaptation (RL)",
+          "overall_ler": 0.011733333333333333,
+          "total_online_updates": 7878,
+          "update_ratio": 0.5252,
+          "overhead_cost_penalty": 338.1300000000312,
+          "adaptation_speed_steps": 100,
+          "recovery_fraction": 0.0,
+          "execution_time_s": 3.210383892059326
+        },
+        {
+          "strategy": "Oracle MWPM",
+          "overall_ler": 0.011733333333333333,
+          "total_online_updates": 0,
+          "update_ratio": 0.0,
+          "overhead_cost_penalty": 0.0,
+          "adaptation_speed_steps": 100,
+          "recovery_fraction": 0.0,
+          "execution_time_s": 0.745708703994751
+        }
+      ]
+    },
     {
       "seed": 2042,
       "rows": [
@@ -92,7 +182,7 @@
           "overhead_cost_penalty": 0.0,
           "adaptation_speed_steps": 328,
           "recovery_fraction": 0.11320754716981142,
-          "execution_time_s": 0.46407270431518555
+          "execution_time_s": 0.4230310916900635
         },
         {
           "strategy": "Continuous RL Fine-Tune",
@@ -102,7 +192,7 @@
           "overhead_cost_penalty": 300.0000000000171,
           "adaptation_speed_steps": 328,
           "recovery_fraction": 0.11320754716981142,
-          "execution_time_s": 0.48365354537963867
+          "execution_time_s": 0.436722993850708
         },
         {
           "strategy": "Selective Adaptation (RL)",
@@ -112,7 +202,7 @@
           "overhead_cost_penalty": 316.87000000003025,
           "adaptation_speed_steps": 328,
           "recovery_fraction": 0.11320754716981142,
-          "execution_time_s": 3.3624367713928223
+          "execution_time_s": 3.090548038482666
         },
         {
           "strategy": "Oracle MWPM",
@@ -122,7 +212,7 @@
           "overhead_cost_penalty": 0.0,
           "adaptation_speed_steps": 328,
           "recovery_fraction": 0.11320754716981142,
-          "execution_time_s": 0.7554583549499512
+          "execution_time_s": 0.7702693939208984
         }
       ]
     },
@@ -137,7 +227,7 @@
           "overhead_cost_penalty": 0.0,
           "adaptation_speed_steps": 216,
           "recovery_fraction": 0.20689655172413796,
-          "execution_time_s": 0.41625142097473145
+          "execution_time_s": 0.4271845817565918
         },
         {
           "strategy": "Continuous RL Fine-Tune",
@@ -147,7 +237,7 @@
           "overhead_cost_penalty": 300.0000000000171,
           "adaptation_speed_steps": 216,
           "recovery_fraction": 0.20689655172413796,
-          "execution_time_s": 0.42768383026123047
+          "execution_time_s": 0.4456324577331543
         },
         {
           "strategy": "Selective Adaptation (RL)",
@@ -157,7 +247,7 @@
           "overhead_cost_penalty": 330.78000000003226,
           "adaptation_speed_steps": 216,
           "recovery_fraction": 0.2105263157894737,
-          "execution_time_s": 3.2699460983276367
+          "execution_time_s": 3.300079822540283
         },
         {
           "strategy": "Oracle MWPM",
@@ -167,7 +257,7 @@
           "overhead_cost_penalty": 0.0,
           "adaptation_speed_steps": 216,
           "recovery_fraction": 0.20689655172413796,
-          "execution_time_s": 0.7309339046478271
+          "execution_time_s": 0.7817561626434326
         }
       ]
     },
@@ -182,7 +272,7 @@
           "overhead_cost_penalty": 0.0,
           "adaptation_speed_steps": 192,
           "recovery_fraction": 0.18367346938775508,
-          "execution_time_s": 0.4281444549560547
+          "execution_time_s": 0.45659899711608887
         },
         {
           "strategy": "Continuous RL Fine-Tune",
@@ -192,7 +282,7 @@
           "overhead_cost_penalty": 300.0000000000171,
           "adaptation_speed_steps": 192,
           "recovery_fraction": 0.18367346938775508,
-          "execution_time_s": 0.4323577880859375
+          "execution_time_s": 0.4394855499267578
         },
         {
           "strategy": "Selective Adaptation (RL)",
@@ -202,7 +292,7 @@
           "overhead_cost_penalty": 331.8800000000312,
           "adaptation_speed_steps": 192,
           "recovery_fraction": 0.18367346938775508,
-          "execution_time_s": 3.433350086212158
+          "execution_time_s": 3.644620895385742
         },
         {
           "strategy": "Oracle MWPM",
@@ -212,97 +302,7 @@
           "overhead_cost_penalty": 0.0,
           "adaptation_speed_steps": 192,
           "recovery_fraction": 0.18367346938775508,
-          "execution_time_s": 0.730410099029541
-        }
-      ]
-    },
-    {
-      "seed": 5042,
-      "rows": [
-        {
-          "strategy": "Fixed MWPM",
-          "overall_ler": 0.0132,
-          "total_online_updates": 0,
-          "update_ratio": 0.0,
-          "overhead_cost_penalty": 0.0,
-          "adaptation_speed_steps": 104,
-          "recovery_fraction": 0.0,
-          "execution_time_s": 0.46192216873168945
-        },
-        {
-          "strategy": "Continuous RL Fine-Tune",
-          "overall_ler": 0.0132,
-          "total_online_updates": 15000,
-          "update_ratio": 1.0,
-          "overhead_cost_penalty": 300.0000000000171,
-          "adaptation_speed_steps": 104,
-          "recovery_fraction": 0.0,
-          "execution_time_s": 0.4586155414581299
-        },
-        {
-          "strategy": "Selective Adaptation (RL)",
-          "overall_ler": 0.0132,
-          "total_online_updates": 7652,
-          "update_ratio": 0.5101333333333333,
-          "overhead_cost_penalty": 335.8900000000348,
-          "adaptation_speed_steps": 104,
-          "recovery_fraction": 0.0,
-          "execution_time_s": 3.317042350769043
-        },
-        {
-          "strategy": "Oracle MWPM",
-          "overall_ler": 0.012866666666666667,
-          "total_online_updates": 0,
-          "update_ratio": 0.0,
-          "overhead_cost_penalty": 0.0,
-          "adaptation_speed_steps": 104,
-          "recovery_fraction": 0.0,
-          "execution_time_s": 0.7631499767303467
-        }
-      ]
-    },
-    {
-      "seed": 6042,
-      "rows": [
-        {
-          "strategy": "Fixed MWPM",
-          "overall_ler": 0.011933333333333334,
-          "total_online_updates": 0,
-          "update_ratio": 0.0,
-          "overhead_cost_penalty": 0.0,
-          "adaptation_speed_steps": 131,
-          "recovery_fraction": 0.6792452830188679,
-          "execution_time_s": 0.4321422576904297
-        },
-        {
-          "strategy": "Continuous RL Fine-Tune",
-          "overall_ler": 0.011933333333333334,
-          "total_online_updates": 15000,
-          "update_ratio": 1.0,
-          "overhead_cost_penalty": 300.0000000000171,
-          "adaptation_speed_steps": 131,
-          "recovery_fraction": 0.6792452830188679,
-          "execution_time_s": 0.4220547676086426
-        },
-        {
-          "strategy": "Selective Adaptation (RL)",
-          "overall_ler": 0.011933333333333334,
-          "total_online_updates": 7527,
-          "update_ratio": 0.5018,
-          "overhead_cost_penalty": 326.3700000000277,
-          "adaptation_speed_steps": 131,
-          "recovery_fraction": 0.72,
-          "execution_time_s": 3.4483869075775146
-        },
-        {
-          "strategy": "Oracle MWPM",
-          "overall_ler": 0.011266666666666666,
-          "total_online_updates": 0,
-          "update_ratio": 0.0,
-          "overhead_cost_penalty": 0.0,
-          "adaptation_speed_steps": 131,
-          "recovery_fraction": 0.6792452830188679,
-          "execution_time_s": 0.7806684970855713
+          "execution_time_s": 1.1334049701690674
         }
       ]
     }
